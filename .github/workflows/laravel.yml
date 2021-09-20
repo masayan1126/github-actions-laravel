@@ -28,3 +28,6 @@ jobs:
       - name: Print Go version
         run: |
           php -v
+          
+      - name: Create Laravel Project
+        run: docker-compose exec -T app-dl composer create-project  --prefer-dist laravel/laravel my-app
