@@ -27,3 +27,8 @@ jobs:
       - uses: actions/checkout@v2
       - name: Docker Version
         run: docker version
+
+      - name: Docker Compose Process
+        run: |
+          docker-compose ps -a
+          docker network ls
