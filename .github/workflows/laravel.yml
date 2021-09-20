@@ -25,10 +25,6 @@ jobs:
           
     steps:
       - uses: actions/checkout@v2
-      - name: Docker Version
-        run: docker version
-
-      - name: Docker Compose Process
+      - name: Print Go version
         run: |
-          docker-compose ps -a
-          docker network ls
+          php -v
