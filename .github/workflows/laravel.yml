@@ -28,9 +28,7 @@ jobs:
       - name: Print Go version
         run: |
           php -v
-          
-      
+          composer -V
           
       - name: Create Laravel Project
-        run: copy --from=composer:latest /usr/bin/composer /usr/bin/composer
-             composer create-project  --prefer-dist laravel/laravel my-app
+        run: composer create-project  --prefer-dist laravel/laravel my-app
