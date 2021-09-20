@@ -25,7 +25,7 @@ jobs:
           
     steps:
       - uses: actions/checkout@v2
-      - uses: php-actions/composer@v6
+      - uses: php-actions/composer@v2
       - name: Print Go version
         run: |
           php -v
