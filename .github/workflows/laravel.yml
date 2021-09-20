@@ -9,7 +9,7 @@ on:
 jobs:
   laravel-tests:
     runs-on: ubuntu-latest
-    
+    # ubuntu上でLaravelコンテナを起動して各ステップを実行する
     container:
       image: lorisleiva/laravel-docker:8.0
       
