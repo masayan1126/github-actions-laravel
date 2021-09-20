@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     # ubuntu上でLaravelコンテナを起動して各ステップを実行する
     container:
-      image: ./docker/php
+      image: php:8.0-fpm
       
     services:
       db-dl:
