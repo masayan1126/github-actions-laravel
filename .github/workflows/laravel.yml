@@ -29,5 +29,8 @@ jobs:
         run: |
           php -v
           
+      
+          
       - name: Create Laravel Project
-        run: composer create-project  --prefer-dist laravel/laravel my-app
+        run: copy --from=composer:latest /usr/bin/composer /usr/bin/composer
+             composer create-project  --prefer-dist laravel/laravel my-app
