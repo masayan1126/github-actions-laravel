@@ -25,9 +25,11 @@ jobs:
           
     steps:
       - uses: actions/checkout@v2
+      - uses: php-actions/composer@v6
       - name: Print Go version
         run: |
           php -v
+          composer -V
           
       - name: Create Laravel Project
         run: copy --from=composer:latest /usr/bin/composer /usr/bin/composer 
