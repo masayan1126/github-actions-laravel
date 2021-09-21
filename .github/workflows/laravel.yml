@@ -50,16 +50,6 @@ jobs:
       
       - name: Set Laravel Project
       
-        env: 
-          DB_CONNECTION: mysql
-          DB_CHARSET: utf8mb4
-          DB_COLLATION: utf8mb4_unicode_ci
-          DB_HOST: db
-          DB_PORT: 3306
-          DB_DATABASE=: sample_db
-          DB_USERNAME: root
-          DB_PASSWORD: root
-      
         run: |
              chmod -R 777 storage bootstrap/cache
              composer install
