@@ -26,7 +26,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         
-      - name: Print Go version
+      - name: Print php version
         run: |
           php -v
           
@@ -36,3 +36,7 @@ jobs:
              php composer-setup.php
              php -r "unlink('composer-setup.php');"
              composer create-project  --prefer-dist laravel/laravel my-app
+             
+      - name: Print composer version
+        run: |
+          composer -v
