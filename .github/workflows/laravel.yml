@@ -14,7 +14,7 @@ jobs:
       image: php:8.0-fpm
       
     services:
-      db-dl:
+      mysql:
         image: mysql:latest
         env:
           MYSQL_USER: root
