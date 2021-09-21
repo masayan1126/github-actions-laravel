@@ -41,10 +41,9 @@ jobs:
              apt install -y zlib1g-dev vim libzip-dev
              composer create-project  --prefer-dist laravel/laravel my-app
              cd my-app && chmod -R 777 storage bootstrap/cache
-             composer install
-             composer dump-autoload -q
-             which composer -V
-             php artisan key:generate
+             cd my-app && composer install
+             cd my-app && composer dump-autoload -q
+             cd my-app && php artisan key:generate
              
         env: 
           DB_CONNECTION: mysql
@@ -54,4 +53,4 @@ jobs:
           DB_USERNAME: root
           DB_PASSWORD: root
        
-            php artisan migrate && vendor\bin\phpunit test\
+            cd my-app && php artisan migrate && vendor\bin\phpunit test\
