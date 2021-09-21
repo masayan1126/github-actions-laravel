@@ -40,8 +40,15 @@ jobs:
              which composer
              apt update && apt install -y git
              composer create-project  --prefer-dist laravel/laravel my-app
-             cp ../.env.example .env
-             cat .env
+             
+             env: 
+               DB_CONNECTION=mysql
+               DB_HOST=mysql
+               DB_PORT=3306
+               DB_DATABASE=sample_db
+               DB_USERNAME=root
+               DB_PASSWORD=root
+               
              php artisan key:generate
              chmod -R 777 storage bootstrap/cache
              composer install
