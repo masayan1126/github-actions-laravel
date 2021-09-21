@@ -39,7 +39,7 @@ jobs:
              mv composer.phar /usr/local/bin/composer
              which composer
              apt update && apt install -y git
-             https://github.com/symfony/deprecation-contracts.git 
+             git clone https://github.com/symfony/deprecation-contracts.git
              composer create-project  --prefer-dist laravel/laravel my-app
              
              env: 
