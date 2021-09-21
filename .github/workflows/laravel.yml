@@ -17,7 +17,6 @@ jobs:
       mysql:
         image: mysql:latest
         env:
-          MYSQL_USER: root
           MYSQL_ROOT_PASSWORD: root
           MYSQL_DATABASE: sample_db
         ports:
@@ -42,14 +41,14 @@ jobs:
              git clone https://github.com/symfony/deprecation-contracts.git
              composer create-project  --prefer-dist laravel/laravel my-app
              
-             env: 
-               DB_CONNECTION=mysql
-               DB_HOST=mysql
-               DB_PORT=3306
-               DB_DATABASE=sample_db
-               DB_USERNAME=root
-               DB_PASSWORD=root
-               
+        env: 
+          DB_CONNECTION: mysql
+          DB_HOST: mysql
+          DB_PORT: 3306
+          DB_DATABASE=: sample_db
+          DB_USERNAME: root
+          DB_PASSWORD: root
+                        
              php artisan key:generate
              chmod -R 777 storage bootstrap/cache
              composer install
