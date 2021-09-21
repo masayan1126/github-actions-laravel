@@ -60,6 +60,7 @@ jobs:
              cp ../.env.example .env
              php artisan migrate
              
+        # working-directoryはrunを実行するディレクトリ(cdしなくて済む)
         working-directory: ./my-app
         
             
