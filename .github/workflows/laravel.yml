@@ -40,10 +40,12 @@ jobs:
              apt update && apt install -y git
              apt install -y zlib1g-dev vim libzip-dev
              composer create-project  --prefer-dist laravel/laravel my-app
-             cd my-app && chmod -R 777 storage bootstrap/cache
-             cd my-app && composer install
-             cd my-app && composer dump-autoload -q
-             cd my-app && php artisan key:generate
+             ls -la
+             cd my-app
+             chmod -R 777 storage bootstrap/cache
+             composer install
+             composer dump-autoload -q
+             php artisan key:generate
              
         env: 
           DB_CONNECTION: mysql
