@@ -14,7 +14,7 @@ jobs:
       image: php:8.0-fpm
       
     services:
-      mysql:
+      db:
         image: mysql:latest
         env:
           MYSQL_ROOT_PASSWORD: root
@@ -58,7 +58,7 @@ jobs:
           DB_CONNECTION: mysql
           DB_CHARSET: utf8
           DB_COLLATION: utf8_unicode_ci
-          DB_HOST: hoge
+          DB_HOST: db
           DB_PORT: 3306
           DB_DATABASE=: sample_db
           DB_USERNAME: root
