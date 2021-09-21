@@ -44,6 +44,16 @@ jobs:
              apt install -y zlib1g-dev mariadb-client vim libzip-dev
              docker-php-ext-install zip pdo_mysql
              composer create-project  --prefer-dist laravel/laravel my-app
+      
+        env: 
+          DB_CONNECTION: mysql
+          DB_HOST: mysql
+          DB_PORT: 3306
+          DB_DATABASE=: sample_db
+          DB_USERNAME: root
+          DB_PASSWORD: root
+       
+      
       - name: Set Laravel Project
         run: |
              chmod -R 777 storage bootstrap/cache
@@ -54,13 +64,4 @@ jobs:
              php artisan migrate
              
         working-directory: ./my-app
-             
-        env: 
-          DB_CONNECTION: mysql
-          DB_HOST: mysql
-          DB_PORT: 3306
-          DB_DATABASE=: sample_db
-          DB_USERNAME: root
-          DB_PASSWORD: root
-       
             
