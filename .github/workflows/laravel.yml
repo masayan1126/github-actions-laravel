@@ -24,6 +24,12 @@ jobs:
           - 3306:3306
           
     steps:
+      - name: Install sudo package
+        run: apt update && apt install sudo
+      - name: Installing TeX Live
+        run: |
+          sudo apt-get update
+    
       - uses: actions/checkout@v2
       - uses: shivammathur/setup-php@v2
         with:
