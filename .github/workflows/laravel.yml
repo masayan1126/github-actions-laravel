@@ -41,13 +41,14 @@ jobs:
              apt install -y zlib1g-dev vim libzip-dev
              composer create-project  --prefer-dist laravel/laravel my-app
       - name: Set Laravel Project
-        working-directory: ./my-app
         run: |
              chmod -R 777 storage bootstrap/cache
              composer install
              composer dump-autoload -q
              php artisan key:generate
-             php artisan migrate && vendor\bin\phpunit test\
+             php artisan migrate
+             
+        working-directory: ./my-app
              
         env: 
           DB_CONNECTION: mysql
