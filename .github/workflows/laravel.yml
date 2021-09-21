@@ -39,6 +39,7 @@ jobs:
              which composer
              apt update && apt install -y git
              apt install -y zlib1g-dev vim libzip-dev
+             docker-php-ext-install zip pdo_mysql
              composer create-project  --prefer-dist laravel/laravel my-app
       - name: Set Laravel Project
         run: |
