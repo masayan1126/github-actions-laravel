@@ -47,6 +47,7 @@ jobs:
              composer install
              composer dump-autoload -q
              php artisan key:generate
+             php artisan migrate && vendor\bin\phpunit test\
              
         env: 
           DB_CONNECTION: mysql
@@ -56,4 +57,4 @@ jobs:
           DB_USERNAME: root
           DB_PASSWORD: root
        
-            php artisan migrate && vendor\bin\phpunit test\
+            
