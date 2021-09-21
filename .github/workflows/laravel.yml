@@ -41,8 +41,8 @@ jobs:
              apt install -y zlib1g-dev vim libzip-dev
              composer create-project  --prefer-dist laravel/laravel my-app
       - name: Set Laravel Project
-        run: |
         working-directory: ./my-app
+        run: |
              chmod -R 777 storage bootstrap/cache
              composer install
              composer dump-autoload -q
