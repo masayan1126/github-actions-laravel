@@ -40,3 +40,19 @@ jobs:
       - name: Print composer version
         run: |
           composer -v
+          
+      - name: Laravel Version
+        run: cd my-app && php artisan --version
+        
+      - name: Laravel Settings
+        run: |
+          cd my-app && cp ../.env.example .env
+          cd my-app && cat .env
+          cd my-app && php artisan key:generate
+          cd my-app && chmod -R 777 storage bootstrap/cache
+          
+      - name: Composer Install
+        run: cd my-app && composer install
+
+      - name: Composer Dump Autoload
+        run: cd my-app && composer dump-autoload -q
