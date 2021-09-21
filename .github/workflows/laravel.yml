@@ -10,18 +10,17 @@ on:
 jobs:
   laravel-build:
     runs-on: ubuntu-latest
-    # ubuntu上でLaravelコンテナを起動して各ステップを実行
+    # ubuntu上でLaravelコンテナを起動して各ステップを実行(ubuntu等のランナーマシン上で直接jobを実行する方法もある)
     container:
       image: php:8.0-fpm
       
     services:
+      # このサービスコンテナ名で通信可能
       db:
         image: mysql:latest
         env:
           MYSQL_ROOT_PASSWORD: root
-          MYSQL_DATABASE: sample_db
-          # MYSQL_CHARSET: utf8mb4
-          # MYSQL_COLLATION: utf8mb4_unicode_ci
+          # MYSQL_DATABASE: sample_db
         ports:
           - 3306:3306
           
