@@ -35,6 +35,8 @@ jobs:
           ls -la
           php -v
           
+        working-directory: ./docker
+          
       - name: Create Laravel Project
         run: |
              php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
@@ -56,8 +58,8 @@ jobs:
              composer dump-autoload -q
              php artisan key:generate
              cp ../.env.example .env
-             # mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
              php artisan migrate
              
+        working-directory: ./my-app
         
             
