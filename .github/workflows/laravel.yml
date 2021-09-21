@@ -65,6 +65,7 @@ jobs:
              composer install
              composer dump-autoload -q
              php artisan key:generate
+             cp ../.env.example .env
              # mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
              php artisan migrate
              
