@@ -39,9 +39,8 @@ jobs:
              which composer
              apt update && apt install -y git
              apt install -y zlib1g-dev vim libzip-dev
-             git clone https://github.com/symfony/deprecation-contracts.git
-             composer create-project  --prefer-dist laravel/laravel .
-             chmod -R 777 storage bootstrap/cache
+             composer create-project  --prefer-dist laravel/laravel my-app
+             cd my-app && chmod -R 777 storage bootstrap/cache
              composer install
              composer dump-autoload -q
              which composer -V
