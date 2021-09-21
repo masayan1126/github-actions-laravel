@@ -38,24 +38,12 @@ jobs:
              php -r "unlink('composer-setup.php');"
              mv composer.phar /usr/local/bin/composer
              which composer
-             # composer create-project  --prefer-dist laravel/laravel my-app
-             
-      - name: Print composer version
-        run: |
-          composer -V
-          
-      - name: Laravel Version
-        run: cd my-app && php artisan --version
-        
-      - name: Laravel Settings
-        run: |
-          cd my-app && cp ../.env.example .env
-          cd my-app && cat .env
-          cd my-app && php artisan key:generate
-          cd my-app && chmod -R 777 storage bootstrap/cache
-          
-      - name: Composer Install
-        run: cd my-app && composer install
-
-      - name: Composer Dump Autoload
-        run: cd my-app && composer dump-autoload -q
+             composer create-project  --prefer-dist laravel/laravel my-app
+             cp ../.env.example .env
+             cat .env
+             php artisan key:generate
+             chmod -R 777 storage bootstrap/cache
+             composer install
+             composer dump-autoload -q
+             which composer -V
+             php artisan migrate
