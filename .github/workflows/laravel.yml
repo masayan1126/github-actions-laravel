@@ -50,7 +50,7 @@ jobs:
              composer install
              composer dump-autoload -q
              php artisan key:generate
-             mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+             # mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
              php artisan migrate
              
         working-directory: ./my-app
