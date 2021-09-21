@@ -55,3 +55,5 @@ jobs:
              composer dump-autoload -q
              which composer -V
              php artisan migrate
+             
+             vendor\bin\phpunit test\
