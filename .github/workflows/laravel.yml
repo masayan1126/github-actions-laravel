@@ -41,7 +41,6 @@ jobs:
              apt install -y zlib1g-dev vim libzip-dev
              composer create-project  --prefer-dist laravel/laravel my-app
         working-directory: ./my-app      
-             ls -la
              chmod -R 777 storage bootstrap/cache
              composer install
              composer dump-autoload -q
