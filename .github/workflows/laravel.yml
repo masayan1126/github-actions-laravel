@@ -38,7 +38,7 @@ jobs:
              php -r "unlink('composer-setup.php');"
              mv composer.phar /usr/local/bin/composer
              which composer
-             apt install -y git
+             apt update && apt install -y git
              composer create-project  --prefer-dist laravel/laravel my-app
              cp ../.env.example .env
              cat .env
