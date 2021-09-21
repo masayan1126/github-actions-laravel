@@ -40,8 +40,8 @@ jobs:
              apt update && apt install -y git
              apt install -y zlib1g-dev vim libzip-dev
              composer create-project  --prefer-dist laravel/laravel my-app
+        working-directory: ./my-app      
              ls -la
-             cd my-app
              chmod -R 777 storage bootstrap/cache
              composer install
              composer dump-autoload -q
@@ -55,4 +55,4 @@ jobs:
           DB_USERNAME: root
           DB_PASSWORD: root
        
-            cd my-app && php artisan migrate && vendor\bin\phpunit test\
+            php artisan migrate && vendor\bin\phpunit test\
