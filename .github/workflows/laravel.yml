@@ -6,11 +6,11 @@ on:
   pull_request:
     branches: [ main ]
 
-# 各ジョブは仮想環境の新しいインスタンスで実行
+# 各ジョブは仮想環境の新しいインスタンスで実行されるので環境変数等は独立
 jobs:
-  laravel-tests:
+  laravel-build:
     runs-on: ubuntu-latest
-    # ubuntu上でLaravelコンテナを起動して各ステップを実行する
+    # ubuntu上でLaravelコンテナを起動して各ステップを実行
     container:
       image: php:8.0-fpm
       
@@ -60,5 +60,3 @@ jobs:
              
         # working-directoryはrunを実行するディレクトリ(cdしなくて済む)
         working-directory: ./my-app
-        
-            
