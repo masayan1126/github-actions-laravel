@@ -39,7 +39,7 @@ jobs:
              
       - name: Print composer version
         run: |
-          composer -v
+          composer -V
           
       - name: Laravel Version
         run: cd my-app && php artisan --version
