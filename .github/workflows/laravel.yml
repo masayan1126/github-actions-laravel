@@ -32,6 +32,7 @@ jobs:
         
       - name: Print php version
         run: |
+          ls -la
           php -v
           
       - name: Create Laravel Project
