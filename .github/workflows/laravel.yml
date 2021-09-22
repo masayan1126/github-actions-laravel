@@ -21,7 +21,7 @@ jobs:
         env:
           MYSQL_ROOT_PASSWORD: root
           MYSQL_DATABASE: sample_db
-        # dbサービスコンテナのTCPのポート: Dockerホストのポート
+        # dbサービスコンテナのTCPのポート: Dockerホストのポート(デフォルト3306をサービスコンテナのポートに指定する場合はports自体なくても可)
         ports: 
           - 3306:3310
           
