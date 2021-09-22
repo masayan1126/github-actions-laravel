@@ -53,13 +53,13 @@ jobs:
            
       - name: SetUp Laravel Project
         run: |
-             composer create-project  --prefer-dist laravel/laravel my-app
-             # chmod -R 777 storage bootstrap/cache
-             # composer install
-             # composer dump-autoload -q
-             # php artisan key:generate
-             # cp ../.env.example .env
-             # php artisan migrate
+             #composer create-project  --prefer-dist laravel/laravel my-app
+             #chmod -R 777 storage bootstrap/cache
+             #composer install
+             #composer dump-autoload -q
+             #php artisan key:generate
+             #cp ../.env.example .env
+             #php artisan migrate
              
         # working-directoryはrunを実行するディレクトリ(cdしなくて済む)
         working-directory: ./my-app
