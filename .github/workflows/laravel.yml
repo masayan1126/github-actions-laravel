@@ -67,11 +67,8 @@ jobs:
         working-directory: ./my-app
         
       - name: Run test
-        run: vendor/bin/phpunit tests
+        run: vendor/bin/phpunit tests/Feature/ExampleTest.php
         working-directory: ./my-app
-        
-  # laravel-deploy:
-    # runs-on: ubuntu-latest
     
   FTP-Deploy-Action:
     needs: laravel-build
