@@ -67,8 +67,23 @@ jobs:
         working-directory: ./my-app
         
       - name: Run test
-        run: composer run-script test
+        run: vendor/bin/phpunit tests
         working-directory: ./my-app
         
   # laravel-deploy:
     # runs-on: ubuntu-latest
+    
+  FTP-Deploy-Action:
+    needs: laravel-build
+    name: FTP-Deploy-Action
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - name: FTP-Deploy-Action
+        uses: SamKirkland/FTP-Deploy-Action@2.0.0
+        env:
+          FTP_SERVER: ${{ secrets.FTP_HOST_NAME }}
+          FTP_USERNAME: ${{ secrets.FTP_USER_NAME }}
+          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+          LOCAL_DIR: ./
+          REMOTE_DIR: /smartphonecaseshop.net/public_html
