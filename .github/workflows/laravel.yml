@@ -50,10 +50,10 @@ jobs:
              php composer-setup.php
              php -r "unlink('composer-setup.php');"
              mv composer.phar /usr/local/bin/composer
+             composer create-project  --prefer-dist laravel/laravel my-app
            
       - name: SetUp laravel project
         run: |
-             composer create-project  --prefer-dist laravel/laravel my-app
              #chmod -R 777 storage bootstrap/cache
              #composer install
              #composer dump-autoload -q
