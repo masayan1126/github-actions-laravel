@@ -68,5 +68,5 @@ jobs:
         run: composer run-script test
         working-directory: ./my-app
         
-  laravel-deploy:
-    runs-on: ubuntu-latest
+  # laravel-deploy:
+    # runs-on: ubuntu-latest
