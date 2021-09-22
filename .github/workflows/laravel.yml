@@ -24,33 +24,36 @@ jobs:
         # dbサービスコンテナのTCPのポート: Dockerホストのポート(デフォルト3306をサービスコンテナのポートに指定する場合はports自体なくても可)
         ports: 
           - 3306:3310
-          
+        # ヘルスチェックをして問題なければ、stepsに進む
         options: >-
             --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
           
     steps:
+      # Githubが公開するアクション actions/checkoutを利用すれば、ソースコードをチェックアウトできる
       - uses: actions/checkout@v2
       
       - name: Print php version
         run: |
           php -v
           
-      - name: Create Laravel Project
+      - name: SetUp linux package
+        run: |
+             apt update && apt install -y git
+             apt install -y zlib1g-dev mariadb-client vim libzip-dev
+             docker-php-ext-install zip pdo_mysql
+          
+      - name: SetUp composer
         run: |
              php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+             # TODO: ハッシュ値の指定はどうにかする必要がある...
              php -r "if (hash_file('sha384', 'composer-setup.php') === '756890a4488ce9024fc62c56153228907f1545c228516cbf63f885e036d37e9a59d27d63f46af1d4d07ee0f76181c7d3') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
              php composer-setup.php
              php -r "unlink('composer-setup.php');"
              mv composer.phar /usr/local/bin/composer
-             which composer
-             apt update && apt install -y git
-             apt install -y zlib1g-dev mariadb-client vim libzip-dev
-             docker-php-ext-install zip pdo_mysql
-             composer create-project  --prefer-dist laravel/laravel my-app
-      
-      - name: Set Laravel Project
-      
+           
+      - name: SetUp Laravel Project
         run: |
+             composer create-project  --prefer-dist laravel/laravel my-app
              chmod -R 777 storage bootstrap/cache
              composer install
              composer dump-autoload -q
@@ -60,3 +63,10 @@ jobs:
              
         # working-directoryはrunを実行するディレクトリ(cdしなくて済む)
         working-directory: ./my-app
+        
+      - name: Run test
+        run: composer run-script test
+        working-directory: ./my-app
+        
+  laravel-deploy:
+    runs-on: ubuntu-latest
