@@ -66,9 +66,9 @@ jobs:
         # working-directoryはrunを実行するディレクトリ(cdしなくて済む)
         working-directory: ./my-app
         
-      - name: Run test
-        run: vendor/bin/phpunit tests/Feature/ExampleTest.php
-        working-directory: ./my-app
+      #- name: Run test
+        #run: vendor/bin/phpunit tests/Feature/ExampleTest.php
+        #working-directory: ./my-app
     
   FTP-Deploy-Action:
     needs: laravel-build
