@@ -50,16 +50,18 @@ jobs:
              php composer-setup.php
              php -r "unlink('composer-setup.php');"
              mv composer.phar /usr/local/bin/composer
-             composer create-project  --prefer-dist laravel/laravel my-app
+             
+      - name: Create laravel project
+        run: composer create-project  --prefer-dist laravel/laravel my-app
            
       - name: SetUp laravel project
         run: |
-             #chmod -R 777 storage bootstrap/cache
-             #composer install
-             #composer dump-autoload -q
-             #php artisan key:generate
-             #cp ../.env.example .env
-             #php artisan migrate
+             chmod -R 777 storage bootstrap/cache
+             composer install
+             composer dump-autoload -q
+             php artisan key:generate
+             cp ../.env.example .env
+             php artisan migrate
              
         # working-directoryはrunを実行するディレクトリ(cdしなくて済む)
         working-directory: ./my-app
