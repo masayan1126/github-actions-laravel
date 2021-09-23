@@ -13,8 +13,7 @@ jobs:
     # ubuntu上でLaravelコンテナを起動して各ステップを実行(ubuntu等のランナーマシン上で直接jobを実行する方法もある)
     container:
       image: php:8.0-fpm
-      volumes:
-        - ./:/var/www
+      
       
     services:
       # このサービスコンテナ名で通信可能
