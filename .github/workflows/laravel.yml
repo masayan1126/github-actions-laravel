@@ -60,7 +60,6 @@ jobs:
              php artisan key:generate
              php artisan migrate
              composer dump-autoload
-            # chmod -R 777 storage bootstrap/cache
              
         # working-directoryはrunを実行するディレクトリ(cdしなくて済む)
         working-directory: ./my-app
