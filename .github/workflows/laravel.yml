@@ -69,7 +69,7 @@ jobs:
         run: vendor/bin/phpunit tests
         working-directory: ./my-app
     
-  # FTP-Deploy-Action:
+  FTP-Deploy-Action:
     needs: laravel-build
     name: FTP-Deploy-Action
     runs-on: ubuntu-latest
