@@ -1,1 +1,1 @@
-# docker-laravel-phpunit-githubaction
+- 既存のlaravelプロジェクト(新規作成ではない)をcloneしてテスト、デプロイする
