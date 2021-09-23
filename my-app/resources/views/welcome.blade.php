@@ -128,5 +128,37 @@
                 </div>
             </div>
         </div>
+
+        <script type="text/javascript" src="https://serratus.github.io/quaggaJS/examples/js/quagga.min.js"></script>
+
+        <script>
+
+            Quagga.init({
+                inputStream: { type : 'LiveStream' },
+                decoder: {
+                    readers: [{
+                        format: 'ean_reader',
+                        config: {}
+                    }]
+                }
+            }, (err) => {
+
+                if(!err) {
+
+                    Quagga.start();
+
+                }
+
+            });
+
+            Quagga.onDetected((result) => {
+
+                var code = result.codeResult.code;
+                // ここでAjaxを通して配送完了処理をする
+
+            });
+
+        </script>
+
     </body>
 </html>
