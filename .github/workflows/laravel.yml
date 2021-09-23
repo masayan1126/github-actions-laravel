@@ -44,6 +44,7 @@ jobs:
              apt install -y zlib1g-dev mariadb-client vim libzip-dev
              docker-php-ext-install zip pdo_mysql
           
+      # TODO: ハッシュ値の箇所は今後修正...
       - name: SetUp composer
         run: |
              php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
@@ -69,6 +70,7 @@ jobs:
         working-directory: ./my-app
     
   FTP-Deploy-Action:
+    # buildのjobが完了してから開始する
     needs: laravel-build
     name: FTP-Deploy-Action
     runs-on: ubuntu-latest
@@ -80,5 +82,5 @@ jobs:
           FTP_SERVER: ${{ secrets.FTP_HOST_NAME }}
           FTP_USERNAME: ${{ secrets.FTP_USER_NAME }}
           FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
-          LOCAL_DIR: ./my-app/
+          LOCAL_DIR: ./my-app
           REMOTE_DIR: /smartphonecaseshop.net/prod
