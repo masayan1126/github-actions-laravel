@@ -70,16 +70,16 @@ jobs:
         working-directory: ./my-app
     
   # FTP-Deploy-Action:
-  #   needs: laravel-build
-  #   name: FTP-Deploy-Action
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - uses: actions/checkout@master
-  #     - name: FTP-Deploy-Action
-  #       uses: SamKirkland/FTP-Deploy-Action@2.0.0
-  #       env:
-  #         FTP_SERVER: ${{ secrets.FTP_HOST_NAME }}
-  #         FTP_USERNAME: ${{ secrets.FTP_USER_NAME }}
-  #         FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
-  #         LOCAL_DIR: ./
-  #         REMOTE_DIR: /smartphonecaseshop.net/
+    needs: laravel-build
+    name: FTP-Deploy-Action
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - name: FTP-Deploy-Action
+        uses: SamKirkland/FTP-Deploy-Action@2.0.0
+        env:
+          FTP_SERVER: ${{ secrets.FTP_HOST_NAME }}
+          FTP_USERNAME: ${{ secrets.FTP_USER_NAME }}
+          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+          LOCAL_DIR: ./
+          REMOTE_DIR: /smartphonecaseshop.net/prod/
