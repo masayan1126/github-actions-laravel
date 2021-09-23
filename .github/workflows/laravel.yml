@@ -82,4 +82,4 @@ jobs:
           FTP_USERNAME: ${{ secrets.FTP_USER_NAME }}
           FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
           LOCAL_DIR: ./my-app
-          REMOTE_DIR: /smartphonecaseshop.net
+          REMOTE_DIR: /smartphonecaseshop.net/my-app/
