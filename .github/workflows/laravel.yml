@@ -16,7 +16,6 @@ jobs:
       volumes:
         - /__w/docker-laravel-phpunit-githubaction/docker-laravel-phpunit-githubaction:/var/www
       
-      
     services:
       # このサービスコンテナ名で通信可能
       db:
@@ -48,42 +47,40 @@ jobs:
       - name: SetUp composer
         run: |
              php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
-             # TODO: ハッシュ値の指定はどうにかする必要がある...
+          # TODO: ハッシュ値の指定はどうにかする必要がある...
              php -r "if (hash_file('sha384', 'composer-setup.php') === '756890a4488ce9024fc62c56153228907f1545c228516cbf63f885e036d37e9a59d27d63f46af1d4d07ee0f76181c7d3') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
              php composer-setup.php
              php -r "unlink('composer-setup.php');"
              mv composer.phar /usr/local/bin/composer
-             
-      - name: Create laravel project
-        run: composer create-project  --prefer-dist laravel/laravel my-app
            
       - name: SetUp laravel project
         run: |
-             chmod -R 777 storage bootstrap/cache
+             composer update
              composer install
-             composer dump-autoload -q
-             php artisan key:generate
              cp ../.env.example .env
+             php artisan key:generate
              php artisan migrate
+             composer dump-autoload
+            # chmod -R 777 storage bootstrap/cache
              
         # working-directoryはrunを実行するディレクトリ(cdしなくて済む)
         working-directory: ./my-app
         
       #- name: Run test
-        #run: vendor/bin/phpunit tests/Feature/ExampleTest.php
+        #run: vendor/bin/phpunit tests
         #working-directory: ./my-app
     
-  FTP-Deploy-Action:
-    needs: laravel-build
-    name: FTP-Deploy-Action
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@master
-      - name: FTP-Deploy-Action
-        uses: SamKirkland/FTP-Deploy-Action@2.0.0
-        env:
-          FTP_SERVER: ${{ secrets.FTP_HOST_NAME }}
-          FTP_USERNAME: ${{ secrets.FTP_USER_NAME }}
-          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
-          LOCAL_DIR: ./
-          REMOTE_DIR: /smartphonecaseshop.net/public_html/
+  # FTP-Deploy-Action:
+  #   needs: laravel-build
+  #   name: FTP-Deploy-Action
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@master
+  #     - name: FTP-Deploy-Action
+  #       uses: SamKirkland/FTP-Deploy-Action@2.0.0
+  #       env:
+  #         FTP_SERVER: ${{ secrets.FTP_HOST_NAME }}
+  #         FTP_USERNAME: ${{ secrets.FTP_USER_NAME }}
+  #         FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+  #         LOCAL_DIR: ./
+  #         REMOTE_DIR: /smartphonecaseshop.net/
