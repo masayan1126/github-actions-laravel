@@ -18,7 +18,7 @@ jobs:
       
     services:
       # このサービスコンテナ名で通信可能
-      db:
+      db-dl:
         image: mysql:latest
         env:
           MYSQL_ROOT_PASSWORD: root
