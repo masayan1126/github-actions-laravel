@@ -38,8 +38,6 @@ jobs:
       - name: Print php version
         run: |
           php -v
-          ls -la
-          pwd
           
       - name: SetUp linux package
         run: |
