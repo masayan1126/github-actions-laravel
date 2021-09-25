@@ -128,9 +128,10 @@
                     </div>
                 </div>
             </div>
+            <a href="/users">ユーザー一覧</a>
         </div>
 
-        <script type="text/javascript" src="https://serratus.github.io/quaggaJS/examples/js/quagga.min.js"></script>
+        {{-- <script type="text/javascript" src="https://serratus.github.io/quaggaJS/examples/js/quagga.min.js"></script>
 
         <script>
 
@@ -159,7 +160,7 @@
                 console.log(code);
 
             });
-        </script>
+        </script> --}}
 
     </body>
 </html>

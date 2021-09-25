@@ -4,6 +4,10 @@
 
 ### 手順
 
+```
+cd my-app
+```
+
 パッケージのインストール
 
 ```
@@ -13,7 +17,7 @@ composer install
 ↓dockerコンテナ内で実行
 
 ```
-cp .env.example my-app/.env 
+cp ../.env.example .env 
 ```
 
 ```
