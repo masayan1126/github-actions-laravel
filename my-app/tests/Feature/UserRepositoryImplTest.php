@@ -10,7 +10,7 @@ use Zaico\Infrastructure\User\UserRepositoryImpl;
 
 class UserRepositoryImplTest extends TestCase
 {
-    // use RefreshDatabase;
+    use RefreshDatabase;
 
     public function setUp(): void
     {

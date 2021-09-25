@@ -131,10 +131,9 @@
             <a href="/users">ユーザー一覧</a>
         </div>
 
-        {{-- <script type="text/javascript" src="https://serratus.github.io/quaggaJS/examples/js/quagga.min.js"></script>
+        <script type="text/javascript" src="https://serratus.github.io/quaggaJS/examples/js/quagga.min.js"></script>
 
         <script>
-
             Quagga.init({
                     inputStream: { type : 'LiveStream' },
                     decoder: {
@@ -160,7 +159,7 @@
                 console.log(code);
 
             });
-        </script> --}}
+        </script>
 
     </body>
 </html>

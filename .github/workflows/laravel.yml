@@ -53,8 +53,6 @@ jobs:
              php -r "unlink('composer-setup.php');"
              mv composer.phar /usr/local/bin/composer
            
-      # composer update
-      # composer dump-autoload
       - name: SetUp laravel project
         run: |
              composer install
