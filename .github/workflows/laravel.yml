@@ -53,14 +53,14 @@ jobs:
              php -r "unlink('composer-setup.php');"
              mv composer.phar /usr/local/bin/composer
            
+      # composer update
+      # composer dump-autoload
       - name: SetUp laravel project
         run: |
-             composer update
              composer install
              cp ../.env.example .env
              php artisan key:generate
              php artisan migrate
-             composer dump-autoload
              
         # working-directoryはrunを実行するディレクトリ(cdしなくて済む)
         working-directory: ./my-app
