@@ -156,9 +156,22 @@
 
                 var code = result.codeResult.code;
                 // ここでAjaxを通して配送完了処理をする
-                console.log(code);
+
+                console.log(fetchProduct(code)); ;
 
             });
+        </script>
+
+        <script>
+
+            var rakutenAPiurl = "**https://app.rakuten.co.jp/services/api/IchibaItem/Search/20170706?format=json&";
+            var applicationId=1087782710441504749;
+
+            var fetchProduct = async (code) => {
+                var res = await axios.get(rakutenAPiurl + '&keyword=' + code + '&applicationId=' + applicationId);
+                return res;
+                }
+
         </script>
 
     </body>
