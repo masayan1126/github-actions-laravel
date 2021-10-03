@@ -13,6 +13,14 @@
             body {
                 font-family: 'Nunito', sans-serif;
             }
+
+            /* #interactive.viewport {
+                height: 1000px;
+                width: 1000px;
+                border: 2px;
+                border-color: blueviolet;
+            } */
+
         </style>
     </head>
     <body class="antialiased">
@@ -32,62 +40,63 @@
                 </div>
             @endif
 
-            <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
-                <div class="mt-8 bg-white dark:bg-gray-800 overflow-hidden shadow sm:rounded-lg">
-                    <div class="grid grid-cols-1 md:grid-cols-2">
-                    </div>
-                </div>
-            </div>
             <a href="/users">ユーザー一覧</a>
+
+            <form method="GET" action="/search">
+                {{ csrf_field() }}
+                  <input id="code" type="text" value="" name="code">
+                  <input type="submit" class="btn btn-primary" value="送信">
+            </form>
+
+            @isset($rakutenItem)
+                <a href="{{ $rakutenItem->getUrl() }}">
+                    <img src="{{ $rakutenItem->getImageUrl() }}" alt="商品画像">
+                    {{ $rakutenItem->getName() }}
+                </a>
+                <input type="submit" value="登録">
+            @endisset
+
         </div>
 
         <script type="text/javascript" src="https://serratus.github.io/quaggaJS/examples/js/quagga.min.js"></script>
         <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
         <script>
-
-            var rakutenAPiurl = "https://app.rakuten.co.jp/services/api/IchibaItem/Search/20170706?format=json";
-            var applicationId=1087782710441504749;
-
-            var fetchProduct = async (code) => {
-                await axios.get("https://app.rakuten.co.jp/services/api/IchibaItem/Search/20170706?format=json&keyword=45166228&applicationId=1087782710441504749")
+            const fetchProducts = async (code) => {
+                await axios.get("/search", {
+                    params:{ "code" :code }
+                })
                 .then(res => console.log(res))
                 .catch(err => console.error(err));
             }
 
             Quagga.init({
-        inputStream: { type : 'LiveStream' },
-        decoder: {
-            readers: [{
-                format: 'upc_e_reader',
-                config: {}
-            }]
-        }
-    }, (err) => {
+                inputStream: { type : 'LiveStream' },
+                decoder: {
+                    readers: [{
+                        format: 'ean_reader',
+                        config: {},
+                        multiple: false,
+                    }]
+                }
+            }, (err) => {
 
-        if(!err) {
+                if(!err) {
 
-            Quagga.start();
+                    Quagga.start();
 
-        }
+                }
 
-    });
+            });
 
-    Quagga.onDetected((result) => {
+            Quagga.onDetected((result) => {
 
-        var code = result.codeResult.code;
-        // ここでAjaxを通して配送完了処理をする
-        fetchProduct(code);
-
-        // axios.post('http://localhost:8500/search', code)
-        //   .then(res =>  {
-        //     console.log(res.data);
-        // }).catch( error => { console.log(error); });
-    });
+                const code = result.codeResult.code;
+                console.log(code);
+                // fetchProducts(code);
+                document.getElementById("code").value= code;
+            });
 
         </script>
-
-
-
     </body>
 </html>
