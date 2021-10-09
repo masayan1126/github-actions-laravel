@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\stock;
 use Illuminate\Http\Request;
+use Zaico\Application\Stock\StockStoreService;
 
 class StockController extends Controller
 {
@@ -33,9 +34,17 @@ class StockController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
+    public function store(
+        Request $request,
+        StockStoreService $stockStoreService
+    ) {
         //
+        $request->merge(['user_id' => 1]);
+        echo '<pre>';
+        var_dump($request->all());
+        echo '</pre>';
+
+        $stockStoreService->exec($request->all());
     }
 
     /**

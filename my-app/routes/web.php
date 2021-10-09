@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\RakutenProductSearchController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\StockController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,4 +21,5 @@ Route::get('/', function () {
 });
 
 Route::get('/users', [UserController::class, 'index']);
-Route::get('/search', RakutenProductSearchController::class);
+Route::get('/products/search', RakutenProductSearchController::class);
+Route::get('/stocks/store', [StockController::class, 'store']);

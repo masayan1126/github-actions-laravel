@@ -38,6 +38,11 @@ class ModelUser extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function stocks()
+    {
+        return $this->hasMany(ModelStock::class);
+    }
+
     public function toDomain(): User
     {
         $user = new User();

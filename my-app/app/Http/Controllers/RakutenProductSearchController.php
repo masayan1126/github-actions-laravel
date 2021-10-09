@@ -14,21 +14,19 @@ class RakutenProductSearchController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function __invoke(Request $request, RakutenItem $rakutenItem)
-    {
-        //楽天APIインスタンス
-        $client = new RakutenRws_Client();
-
+    public function __invoke(
+        Request $request,
+        RakutenRws_Client $client,
+        RakutenItem $rakutenItem
+    ) {
         define('RAKUTEN_APPLICATION_ID', config('app.rakuten_id'));
-        define('RAKUTEN_APPLICATION_SEACRET', config('app.rakuten_key'));
 
         $client->setApplicationId(RAKUTEN_APPLICATION_ID);
-        $code = $request->input('code');
 
-        if (!empty($code)) {
+        if (!empty($request->input('code'))) {
             $response = $client->execute('IchibaItemSearch', [
                 //入力パラメーターはバーコード
-                'keyword' => $code,
+                'keyword' => $request->input('code'),
             ]);
 
             if (!$response->isOk()) {

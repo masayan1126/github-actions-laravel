@@ -40,20 +40,25 @@
                 </div>
             @endif
 
-            <a href="/users">ユーザー一覧</a>
+            {{-- <a href="/users">ユーザー一覧</a> --}}
 
-            <form method="GET" action="/search">
+            <form method="GET" action="/products/search">
                 {{ csrf_field() }}
                   <input id="code" type="text" value="" name="code">
                   <input type="submit" class="btn btn-primary" value="送信">
             </form>
 
             @isset($rakutenItem)
-                <a href="{{ $rakutenItem->getUrl() }}">
-                    <img src="{{ $rakutenItem->getImageUrl() }}" alt="商品画像">
-                    {{ $rakutenItem->getName() }}
-                </a>
-                <input type="submit" value="登録">
+                <form method="GET" action="/stocks/store">
+                    <a href="{{ $rakutenItem->getUrl() }}">
+                        <img src="{{ $rakutenItem->getImageUrl() }}" alt="商品画像">
+                        {{ $rakutenItem->getName() }}
+                    </a>
+                    <input type="hidden" name="rakutenItemUrl" value="{{ $rakutenItem->getUrl() }}">
+                    <input type="hidden" name="name" value="{{ $rakutenItem->getName() }}">
+                    <input type="hidden" name="rakutenItemImageUrl" value="{{ $rakutenItem->getImageUrl() }}">
+                    <input type="submit" value="登録">
+                </form>
             @endisset
 
         </div>
@@ -62,13 +67,13 @@
         <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
         <script>
-            const fetchProducts = async (code) => {
-                await axios.get("/search", {
-                    params:{ "code" :code }
-                })
-                .then(res => console.log(res))
-                .catch(err => console.error(err));
-            }
+            // const fetchProducts = async (code) => {
+            //     await axios.get("/search", {
+            //         params:{ "code" :code }
+            //     })
+            //     .then(res => console.log(res))
+            //     .catch(err => console.error(err));
+            // }
 
             Quagga.init({
                 inputStream: { type : 'LiveStream' },
@@ -92,7 +97,6 @@
             Quagga.onDetected((result) => {
 
                 const code = result.codeResult.code;
-                console.log(code);
                 // fetchProducts(code);
                 document.getElementById("code").value= code;
             });
