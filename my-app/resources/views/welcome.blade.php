@@ -40,7 +40,7 @@
                 </div>
             @endif
 
-            {{-- <a href="/users">ユーザー一覧</a> --}}
+            <a href="/users">ユーザー一覧</a>
 
             <form method="GET" action="/products/search">
                 {{ csrf_field() }}
