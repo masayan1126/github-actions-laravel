@@ -41,12 +41,18 @@ class StockRepositoryImplTest extends TestCase
             'id' => 1,
             'user_id' => 1,
             'name' => 'ガム',
+            'image_url' =>
+                'http://thumbnail.image.rakuten.co.jp/@0_mall/jetprice/cabinet/107/800364.jpg?_ex=128x128',
+            'url' => 'https://item.rakuten.co.jp/jetprice/x21203/',
         ]);
 
         $this->assertDatabaseHas('stocks', [
             'id' => 1,
             'user_id' => 1,
             'name' => 'ガム',
+            'image_url' =>
+                'http://thumbnail.image.rakuten.co.jp/@0_mall/jetprice/cabinet/107/800364.jpg?_ex=128x128',
+            'url' => 'https://item.rakuten.co.jp/jetprice/x21203/',
         ]);
     }
 }
