@@ -23,6 +23,21 @@ class StockRepositoryImpl implements StockRepository
     //         );
     //     }
     // }
+    public function findByUserId(int $userId): array
+    {
+        try {
+            $modelStocks = ModelStock::where('user_id', '=', $userId)->get();
+
+            return array_map(
+                fn($modelStock) => $modelStock->toDomain(),
+                $modelStocks->all()
+            );
+        } catch (ModelNotFoundException $e) {
+            throw new RepositoryNotFoundException(
+                'Not Found industry. id=' . $userId
+            );
+        }
+    }
 
     // public function searchByCriteria(UserCriteria $userCriteria): array
     // {

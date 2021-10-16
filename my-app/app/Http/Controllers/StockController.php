@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\stock;
 use Illuminate\Http\Request;
+use Zaico\Application\Stock\StockFetchService;
 use Zaico\Application\Stock\StockStoreService;
+use Zaico\Domain\Stock\StockTransformer;
 
 class StockController extends Controller
 {
@@ -13,9 +15,23 @@ class StockController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(StockFetchService $stockFetchService)
     {
         //
+        $userId = 1;
+
+        $stocks = array_map(
+            fn($modelStock) => StockTransformer::transform($modelStock),
+            $stockFetchService->exec($userId)
+        );
+
+        // return view('stock', [
+        //     'stocks' => $stocks,
+        // ]);
+
+        // dd($stocks);
+
+        return view('stock', compact('stocks'));
     }
 
     /**

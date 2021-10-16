@@ -23,3 +23,4 @@ Route::get('/', function () {
 Route::get('/users', [UserController::class, 'index']);
 Route::get('/products/search', RakutenProductSearchController::class);
 Route::post('/stocks/store', [StockController::class, 'store']);
+Route::get('/stocks', [StockController::class, 'index']);
