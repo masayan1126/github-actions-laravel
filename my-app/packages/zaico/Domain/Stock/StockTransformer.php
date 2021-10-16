@@ -11,6 +11,8 @@ class StockTransformer
             'name' => $stock->getName(),
             'url' => $stock->getUrl(),
             'imageUrl' => $stock->getImageUrl(),
+            'number' => $stock->getNumber(),
+            'expiryDate' => $stock->getExpiryDate(),
         ];
     }
 }

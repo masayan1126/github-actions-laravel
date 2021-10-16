@@ -6,11 +6,13 @@ use Zaico\Domain\Stock\Stock;
 
 interface StockRepository
 {
-    // public function findById(int $id): Stock;
+    public function findById(int $id): Stock;
 
     public function findByUserId(int $userId): array;
 
     // public function searchByCriteria(UserCriteria $userCriteria): array;
 
     public function save($data): void;
+
+    public function update($data): void;
 }

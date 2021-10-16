@@ -59,6 +59,8 @@
                     {{ csrf_field() }}
                     <input type="hidden" name="url" value="{{ $rakutenItemList["url"] }}">
                     <input type="hidden" name="name" value="{{ $rakutenItemList["name"] }}">
+                    在庫数:<input type="number" name="number" value="">
+                    賞味期限:<input type="date" name="expiry_date" value="">
                     <input type="hidden" name="image_url" value="{{ $rakutenItemList["imageUrl"] }}">
                     <input type="submit" value="登録">
                 </form>

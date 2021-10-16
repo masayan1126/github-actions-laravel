@@ -5,7 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\stock;
 use Illuminate\Http\Request;
 use Zaico\Application\Stock\StockFetchService;
+use Zaico\Application\Stock\StockFindService;
 use Zaico\Application\Stock\StockStoreService;
+use Zaico\Application\Stock\StockUpdateService;
+use Zaico\Domain\Date\Date;
 use Zaico\Domain\Stock\StockTransformer;
 
 class StockController extends Controller
@@ -28,8 +31,6 @@ class StockController extends Controller
         // return view('stock', [
         //     'stocks' => $stocks,
         // ]);
-
-        // dd($stocks);
 
         return view('stock', compact('stocks'));
     }
@@ -56,8 +57,10 @@ class StockController extends Controller
         StockStoreService $stockStoreService
     ) {
         $request->merge(['user_id' => 1]);
+        // $request->merge(['expiry_date' => new Date($request->expiry_date)]);
 
-        $stockStoreService->exec($request->all());
+        $stocks = $stockStoreService->exec($request->all());
+        return view('stock', compact('stocks'));
     }
 
     /**
@@ -77,9 +80,15 @@ class StockController extends Controller
      * @param  \App\Models\stock  $stock
      * @return \Illuminate\Http\Response
      */
-    public function edit(stock $stock)
+    public function edit(Request $request, StockFindService $stockFindService)
     {
-        //
+        // stockIdを受け取り、編集画面とともに返す
+
+        $stock = StockTransformer::transform(
+            $stockFindService->exec($request->id)
+        );
+
+        return view('stock.edit', compact('stock'));
     }
 
     /**
@@ -89,9 +98,17 @@ class StockController extends Controller
      * @param  \App\Models\stock  $stock
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, stock $stock)
-    {
+    public function update(
+        Request $request,
+        StockUpdateService $stockUpdateService
+    ) {
         //
+
+        // dd($request->all());
+
+        $stockUpdateService->exec($request->all());
+
+        return redirect('/stocks');
     }
 
     /**

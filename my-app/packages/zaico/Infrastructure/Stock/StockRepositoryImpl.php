@@ -11,18 +11,17 @@ use Zaico\Domain\User\UserCriteria;
 
 class StockRepositoryImpl implements StockRepository
 {
-    // public function findById(int $id): Stock
-    // {
-    //     try {
-    //         return ModelStock::query()
-    //             ->findOrFail($id)
-    //             ->toDomain();
-    //     } catch (ModelNotFoundException $e) {
-    //         throw new RepositoryNotFoundException(
-    //             'Not Found industry. id=' . $id
-    //         );
-    //     }
-    // }
+    public function findById(int $id): Stock
+    {
+        try {
+            return ModelStock::query()
+                ->findOrFail($id)
+                ->toDomain();
+        } catch (ModelNotFoundException $e) {
+            throw new RepositoryNotFoundException('Not Found stock. id=' . $id);
+        }
+    }
+
     public function findByUserId(int $userId): array
     {
         try {
@@ -34,9 +33,25 @@ class StockRepositoryImpl implements StockRepository
             );
         } catch (ModelNotFoundException $e) {
             throw new RepositoryNotFoundException(
-                'Not Found industry. id=' . $userId
+                'Not Found stock. id=' . $userId
             );
         }
+    }
+
+    public function save($data): void
+    {
+        ModelStock::create($data);
+    }
+
+    public function update($data): void
+    {
+        $modelStock = ModelStock::find($data['id']);
+        // dd($data);
+        $modelStock->name = $data['name'];
+        $modelStock->number = $data['number'];
+        $modelStock->expiry_date = $data['expiry_date'];
+
+        $modelStock->save();
     }
 
     // public function searchByCriteria(UserCriteria $userCriteria): array
@@ -68,10 +83,5 @@ class StockRepositoryImpl implements StockRepository
         // $query->orderBy('hoge', 'asc');
 
         return $query;
-    }
-
-    public function save($data): void
-    {
-        ModelStock::create($data);
     }
 }

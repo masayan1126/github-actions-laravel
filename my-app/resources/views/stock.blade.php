@@ -22,21 +22,19 @@
                         <img src="{{ $stock["imageUrl"] }}" alt="{{ $stock["name"] }} の画像">
                         {{ $stock["name"] }}
                     </a>
+                    <p>在庫数：{{ $stock["number"] }}</p>
+                    <p>賞味期限：{{ $stock["expiryDate"] }}</p>
 
                 </div>
 
-                <form method="POST" action="/stocks/edit">
+                <form method="GET" action="/stocks/edit/{{ $stock["id"] }}">
                     {{ csrf_field() }}
-                    <input type="hidden" name="url" value="{{ $stock["url"] }}">
-                    <input type="hidden" name="name" value="{{ $stock["name"] }}">
-                    <input type="hidden" name="image_url" value="{{ $stock["imageUrl"] }}">
+                    <input type="hidden" name="id" value="{{ $stock["id"] }}">
                     <input type="submit" value="編集">
                 </form>
-                <form method="POST" action="/stocks/update">
+                <form method="POST" action="/stocks/delete/{{ $stock["id"] }}">
                     {{ csrf_field() }}
-                    <input type="hidden" name="url" value="{{ $stock["url"] }}">
-                    <input type="hidden" name="name" value="{{ $stock["name"] }}">
-                    <input type="hidden" name="image_url" value="{{ $stock["imageUrl"] }}">
+                    <input type="hidden" name="id" value="{{ $stock["id"] }}">
                     <input type="submit" value="削除">
                 </form>
             @endforeach

@@ -9,6 +9,8 @@ class Stock
     private ?int $userId = null;
     private ?string $imageUrl = null;
     private ?string $url = null;
+    private ?int $number = null;
+    private ?string $expiryDate = null;
 
     /**
      * Get the value of id
@@ -106,6 +108,46 @@ class Stock
     public function setUrl($url)
     {
         $this->url = $url;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of number
+     */
+    public function getNumber()
+    {
+        return $this->number;
+    }
+
+    /**
+     * Set the value of number
+     *
+     * @return  self
+     */
+    public function setNumber($number)
+    {
+        $this->number = $number;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of expiryDate
+     */
+    public function getExpiryDate()
+    {
+        return $this->expiryDate;
+    }
+
+    /**
+     * Set the value of expiryDate
+     *
+     * @return  self
+     */
+    public function setExpiryDate($expiryDate)
+    {
+        $this->expiryDate = $expiryDate;
 
         return $this;
     }

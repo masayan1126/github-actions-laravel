@@ -12,7 +12,14 @@ class ModelStock extends Model
 
     protected $table = 'stocks';
 
-    protected $fillable = ['user_id', 'name', 'image_url', 'url'];
+    protected $fillable = [
+        'user_id',
+        'name',
+        'image_url',
+        'url',
+        'number',
+        'expiry_date',
+    ];
 
     // public function toDomain(): Stock
     // {
@@ -32,6 +39,8 @@ class ModelStock extends Model
             ->setUserId($this->user_id)
             ->setName($this->name)
             ->setImageUrl($this->image_url)
-            ->setUrl($this->url);
+            ->setUrl($this->url)
+            ->setNumber($this->number)
+            ->setExpiryDate($this->expiry_date);
     }
 }
