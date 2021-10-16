@@ -29,20 +29,17 @@ class StockController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Undocumented function
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param StockStoreService $stockStoreService
+     * @return void
      */
     public function store(
         Request $request,
         StockStoreService $stockStoreService
     ) {
-        //
         $request->merge(['user_id' => 1]);
-        echo '<pre>';
-        var_dump($request->all());
-        echo '</pre>';
 
         $stockStoreService->exec($request->all());
     }

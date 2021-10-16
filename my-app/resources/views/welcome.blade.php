@@ -44,21 +44,25 @@
 
             <form method="GET" action="/products/search">
                 {{ csrf_field() }}
-                  <input id="code" type="text" value="" name="code">
-                  <input type="submit" class="btn btn-primary" value="送信">
+                <input id="code" type="text" value="" name="code">
+                <input type="submit" class="btn btn-primary" value="送信">
             </form>
 
-            @isset($rakutenItem)
-                <form method="GET" action="/stocks/store">
-                    <a href="{{ $rakutenItem->getUrl() }}">
-                        <img src="{{ $rakutenItem->getImageUrl() }}" alt="商品画像">
-                        {{ $rakutenItem->getName() }}
-                    </a>
-                    <input type="hidden" name="rakutenItemUrl" value="{{ $rakutenItem->getUrl() }}">
-                    <input type="hidden" name="name" value="{{ $rakutenItem->getName() }}">
-                    <input type="hidden" name="rakutenItemImageUrl" value="{{ $rakutenItem->getImageUrl() }}">
+            @isset($rakutenItemList)
+
+            <a href={{ $rakutenItemList["url"] }}>
+                {{ $rakutenItemList["name"] }}
+                <img src="{{ $rakutenItemList["imageUrl"] }}" alt="{{ $rakutenItemList["name"] }} の画像">
+            </a>
+
+                <form method="POST" action="/stocks/store">
+                    {{ csrf_field() }}
+                    <input type="hidden" name="url" value="{{ $rakutenItemList["url"] }}">
+                    <input type="hidden" name="name" value="{{ $rakutenItemList["name"] }}">
+                    <input type="hidden" name="image_url" value="{{ $rakutenItemList["imageUrl"] }}">
                     <input type="submit" value="登録">
                 </form>
+
             @endisset
 
         </div>

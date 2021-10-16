@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use RakutenRws_Client;
 use Zaico\Domain\RakutenItem\RakutenItem;
+use Zaico\Domain\RakutenItem\RakutenItemTransformer;
 
 class RakutenProductSearchController extends Controller
 {
@@ -35,23 +36,17 @@ class RakutenProductSearchController extends Controller
 
             $results = [];
 
-            // TODO: 変換用のクラスを作ってきれいにする
-            foreach ($response->getData()['Items'] as $item) {
-                // コントローラのメソッドインジェクションしているのでRakutenItemをnewせず使用できる
-                $rakutenItem
-                    ->setName($item['Item']['itemName'])
-                    ->setUrl($item['Item']['itemUrl'])
-                    ->setImageUrl(
-                        $item['Item']['mediumImageUrls'][0]['imageUrl']
-                    );
+            $rakutenItem
+                ->setName($response->getData()['Items'][0]['Item']['itemName'])
+                ->setUrl($response->getData()['Items'][0]['Item']['itemUrl'])
+                ->setImageUrl(
+                    $response->getData()['Items'][0]['Item'][
+                        'mediumImageUrls'
+                    ][0]['imageUrl']
+                );
 
-                array_push($results, $rakutenItem);
-            }
-
-            $rakutenItem = array_shift($results);
-
-            // TODO: APIドキュメントを読み込んで、もう少しきれいにデータを取得する(http://webservice.rakuten.co.jp/sdkapi/php/)
-            return view('welcome', compact('rakutenItem'));
+            $rakutenItemList = RakutenItemTransformer::transform($rakutenItem);
+            return view('welcome', compact('rakutenItemList'));
         }
     }
 }

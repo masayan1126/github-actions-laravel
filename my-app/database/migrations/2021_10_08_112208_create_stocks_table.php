@@ -20,6 +20,8 @@ class CreateStocksTable extends Migration
                 ->constrained()
                 ->onDelete('cascade');
             $table->string('name');
+            $table->string('image_url');
+            $table->string('url');
             $table->timestamps();
         });
     }

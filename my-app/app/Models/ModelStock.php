@@ -11,7 +11,7 @@ class ModelStock extends Model
 
     protected $table = 'stocks';
 
-    protected $fillable = ['user_id', 'name'];
+    protected $fillable = ['user_id', 'name', 'image_url', 'url'];
 
     // public function toDomain(): Stock
     // {
