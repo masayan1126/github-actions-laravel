@@ -16,6 +16,4 @@ yarn-error.log
 /.vscode
 
 ../docker/db
-.vscode/
-# php debugのログ
-/log
+
