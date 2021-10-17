@@ -23,10 +23,14 @@ class StockController extends Controller
         //
         $userId = 1;
 
-        $stocks = array_map(
-            fn($modelStock) => StockTransformer::transform($modelStock),
-            $stockFetchService->exec($userId)
+        $stocks = json_encode(
+            array_map(
+                fn($modelStock) => StockTransformer::transform($modelStock),
+                $stockFetchService->exec($userId)
+            )
         );
+
+        // dd($stocks);
 
         // return view('stock', [
         //     'stocks' => $stocks,

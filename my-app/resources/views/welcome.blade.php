@@ -1,13 +1,4 @@
-@extends('layouts.app')
 
-@section('content')
-@isset($rakutenItemList)
-<div id="stock" data-hoge={{ $rakutenItemList }}>
-</div>
-@endisset
-<div id="app">
-
-</div>
 
 <div class="container">
     <div id="interactive" class="viewport"></div>
