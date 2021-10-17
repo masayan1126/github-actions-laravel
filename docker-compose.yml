@@ -8,6 +8,7 @@ services:
       - ./:/var/www
       - ./docker/php/php.ini:/usr/local/etc/php/php.ini
       - ./log:/var/log
+      - node_modules_volume:/var/www/my-app/node_modules
 
   web-dl:
     container_name: nginx-dl
@@ -55,3 +56,6 @@ services:
     image: schickling/mailcatcher
     ports:
       - 1080:1080
+
+volumes:
+  node_modules_volume:

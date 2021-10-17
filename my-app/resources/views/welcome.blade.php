@@ -1,30 +1,16 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('layouts.app')
 
-        <title>Laravel</title>
+@section('content')
+@isset($rakutenItemList)
+<div id="stock" data-hoge={{ $rakutenItemList }}>
+</div>
+@endisset
+<div id="app">
 
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+</div>
 
-        <style>
-            body {
-                font-family: 'Nunito', sans-serif;
-            }
-
-            /* #interactive.viewport {
-                height: 1000px;
-                width: 1000px;
-                border: 2px;
-                border-color: blueviolet;
-            } */
-
-        </style>
-    </head>
-    <body class="antialiased">
-        <div id="interactive" class="viewport"></div>
+<div class="container">
+    <div id="interactive" class="viewport"></div>
         <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
             @if (Route::has('login'))
                 <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
@@ -108,5 +94,5 @@
             });
 
         </script>
-    </body>
-</html>
+</div>
+@endsection

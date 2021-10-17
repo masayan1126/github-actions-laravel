@@ -26,3 +26,7 @@ Route::post('/stocks/store', [StockController::class, 'store']);
 Route::get('/stocks', [StockController::class, 'index']);
 Route::get('/stocks/edit/{id}', [StockController::class, 'edit']);
 Route::post('/stocks/update/{id}', [StockController::class, 'update']);
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
