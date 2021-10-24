@@ -13,4 +13,4 @@ require('./bootstrap')
  */
 
 require('./components/App')
-require('./components/Stock')
+require('./components/atomic/Pages/Stock/Stock.jsx')
