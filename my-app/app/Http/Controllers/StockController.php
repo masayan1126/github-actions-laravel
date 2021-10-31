@@ -30,6 +30,8 @@ class StockController extends Controller
             )
         );
 
+        $rakutenItemList = [];
+
         // dd($stocks);
 
         // return view('stock', [

@@ -24,10 +24,10 @@ class RakutenProductSearchController extends Controller
 
         $client->setApplicationId(RAKUTEN_APPLICATION_ID);
 
-        if (!empty($request->input('code'))) {
+        if (!empty($request->input('barcode'))) {
             $response = $client->execute('IchibaItemSearch', [
                 //入力パラメーターはバーコード
-                'keyword' => $request->input('code'),
+                'keyword' => $request->input('barcode'),
             ]);
 
             if (!$response->isOk()) {
@@ -46,7 +46,9 @@ class RakutenProductSearchController extends Controller
                 );
 
             $rakutenItemList = RakutenItemTransformer::transform($rakutenItem);
-            return view('welcome', compact('rakutenItemList'));
+            return redirect()
+                ->route('stocks.index')
+                ->with(compact('rakutenItemList'));
         }
     }
 }

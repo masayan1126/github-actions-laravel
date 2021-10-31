@@ -22,11 +22,15 @@ Route::get('/', function () {
 
 Route::get('/users', [UserController::class, 'index']);
 Route::get('/products/search', RakutenProductSearchController::class);
+
 Route::post('/stocks/store', [StockController::class, 'store']);
-Route::get('/stocks', [StockController::class, 'index']);
+Route::get('/stocks', [StockController::class, 'index'])->name('stocks.index');
 Route::get('/stocks/edit/{id}', [StockController::class, 'edit']);
 Route::post('/stocks/update/{id}', [StockController::class, 'update']);
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [
+    App\Http\Controllers\HomeController::class,
+    'index',
+])->name('home');
