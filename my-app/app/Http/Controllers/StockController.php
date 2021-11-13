@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\stock;
+use App\Models\ModelStock;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Zaico\Application\Stock\StockFetchService;
@@ -10,6 +10,7 @@ use Zaico\Application\Stock\StockFindService;
 use Zaico\Application\Stock\StockStoreService;
 use Zaico\Application\Stock\StockUpdateService;
 use Zaico\Domain\Date\Date;
+use Zaico\Domain\Stock\Stock;
 use Zaico\Domain\Stock\StockTransformer;
 
 class StockController extends Controller
@@ -60,13 +61,26 @@ class StockController extends Controller
      */
     public function store(
         Request $request,
-        StockStoreService $stockStoreService
+        StockStoreService $stockStoreService,
+        ModelStock $modelStock,
+        Stock $stock
     ) {
-        $request->merge(['user_id' => 1]);
-        // $request->merge(['expiry_date' => new Date($request->expiry_date)]);
+        $data = json_decode($request->data);
+        $stock
+            ->setUserId(Auth::id())
+            ->setName($data[0]->name)
+            ->setImageUrl($data[0]->imageUrl)
+            ->setUrl($data[0]->url)
+            ->setNumber(1);
 
-        $stocks = $stockStoreService->exec($request->all());
-        return view('stock', compact('stocks'));
+        // dd($stock);
+
+        $stockStoreService->exec($stock);
+
+        $stocks = json_encode(StockTransformer::transform($stock));
+
+        // return view('stock', compact('stocks'));
+        return redirect('/stocks');
     }
 
     /**

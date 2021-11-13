@@ -37,7 +37,6 @@ const BarcodeReader = (props) => {
             const code = result.codeResult.code
             // fetchProducts(code);
             document.getElementById('barcode').value = code
-            console.log(code)
         })
     }, [])
 

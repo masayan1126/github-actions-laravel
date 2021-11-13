@@ -12,7 +12,7 @@ interface StockRepository
 
     // public function searchByCriteria(UserCriteria $userCriteria): array;
 
-    public function save($data): void;
+    public function save(Stock $stock): void;
 
     public function update($data): void;
 }

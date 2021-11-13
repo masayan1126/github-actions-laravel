@@ -38,9 +38,11 @@ class StockRepositoryImpl implements StockRepository
         }
     }
 
-    public function save($data): void
+    public function save(Stock $stock): void
     {
-        ModelStock::create($data);
+        $modelStock = new ModelStock();
+        $modelStock = $modelStock->toModel($stock);
+        $modelStock->save();
     }
 
     public function update($data): void
@@ -50,7 +52,6 @@ class StockRepositoryImpl implements StockRepository
         $modelStock->name = $data['name'];
         $modelStock->number = $data['number'];
         $modelStock->expiry_date = $data['expiry_date'];
-
         $modelStock->save();
     }
 

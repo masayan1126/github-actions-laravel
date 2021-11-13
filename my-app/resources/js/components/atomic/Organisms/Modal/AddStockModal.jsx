@@ -1,6 +1,8 @@
 import React, { useCallback, useState, useEffect } from 'react'
 import BarcodeReader from '../BarcodeReader'
 import Button from '../../Atoms/Button/Button'
+import ListWithImage from '../../Molecules/List/ListWithImage'
+import BasicForm from '../../Molecules/Form/BasicForm'
 
 const AddStockModal = (props) => {
     return (
@@ -36,17 +38,18 @@ const AddStockModal = (props) => {
                                 props.fetchRakutenProducts()
                             }
                         />
+                        <ListWithImage list={props.list} />
                     </div>
                     <div class="modal-footer">
-                        <button
-                            className="btn btn-secondary"
-                            onClick={() => props.fetchRakutenProducts()}
-                        >
-                            検索
-                        </button>
+                        <BasicForm
+                            action={'/stocks/store'}
+                            method={'POST'}
+                            buttonName={'追加'}
+                            data={props.list}
+                        ></BasicForm>
                         <button
                             type="button"
-                            class="btn btn-primary"
+                            class="btn btn-secondary"
                             data-dismiss="modal"
                         >
                             Close

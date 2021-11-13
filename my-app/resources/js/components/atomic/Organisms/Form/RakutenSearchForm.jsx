@@ -1,5 +1,4 @@
 import React, { useCallback, useState, useEffect } from 'react'
-import Form from '../../Atoms/Form/Form'
 import TextInput from '../../Atoms/TextInput/TextInput'
 import BarcodeReader from '../BarcodeReader'
 import Button from '../../Atoms/Button/Button'
@@ -7,7 +6,6 @@ import Button from '../../Atoms/Button/Button'
 const RakutenSearchForm = (props) => {
     useEffect(() => {
         // setStocks(stockList)
-        console.log(`barcode:${props.barcode}`)
     }, [props.barcode])
 
     return (

@@ -2202,39 +2202,6 @@ var Button = function Button(props) {
 
 /***/ }),
 
-/***/ "./resources/js/components/atomic/Atoms/Form/Form.jsx":
-/*!************************************************************!*\
-  !*** ./resources/js/components/atomic/Atoms/Form/Form.jsx ***!
-  \************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
-
-
-
-var Form = function Form(props) {
-  var csrf_token = document.head.querySelector('meta[name="csrf-token"]').content;
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("form", {
-    action: props.action,
-    method: props.method,
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
-      type: "hidden",
-      name: "_token",
-      value: csrf_token
-    })
-  });
-};
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Form);
-
-/***/ }),
-
 /***/ "./resources/js/components/atomic/Atoms/Image/Image.jsx":
 /*!**************************************************************!*\
   !*** ./resources/js/components/atomic/Atoms/Image/Image.jsx ***!
@@ -2344,6 +2311,90 @@ var TextInput = function TextInput(props) {
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (TextInput);
+
+/***/ }),
+
+/***/ "./resources/js/components/atomic/Molecules/Form/BasicForm.jsx":
+/*!*********************************************************************!*\
+  !*** ./resources/js/components/atomic/Molecules/Form/BasicForm.jsx ***!
+  \*********************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+
+
+var BasicForm = function BasicForm(props) {
+  var csrf_token = document.head.querySelector('meta[name="csrf-token"]').content;
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("form", {
+    action: props.action,
+    method: props.method,
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
+      type: "hidden",
+      name: "_token",
+      value: csrf_token
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
+      type: "hidden",
+      name: "data",
+      value: JSON.stringify(props.data)
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
+      type: "submit",
+      value: props.buttonName
+    })]
+  });
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (BasicForm);
+
+/***/ }),
+
+/***/ "./resources/js/components/atomic/Molecules/List/ListWithImage.jsx":
+/*!*************************************************************************!*\
+  !*** ./resources/js/components/atomic/Molecules/List/ListWithImage.jsx ***!
+  \*************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+
+
+var ListWithImage = function ListWithImage(props) {
+  console.log(props);
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("ul", {
+    "class": "list-group",
+    children: props.list.map(function (data, index) {
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+        className: "d-flex",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("a", {
+          href: data.url,
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
+            src: data.imageUrl,
+            alt: data.name
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("li", {
+            "class": "list-group-item",
+            children: data.name
+          }, index.toString())]
+        })
+      });
+    })
+  });
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ListWithImage);
 
 /***/ }),
 
@@ -2470,7 +2521,6 @@ var BarcodeReader = function BarcodeReader(props) {
       var code = result.codeResult.code; // fetchProducts(code);
 
       document.getElementById('barcode').value = code;
-      console.log(code);
     });
   }, []);
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
@@ -2504,12 +2554,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var _Atoms_Form_Form__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../Atoms/Form/Form */ "./resources/js/components/atomic/Atoms/Form/Form.jsx");
-/* harmony import */ var _Atoms_TextInput_TextInput__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../Atoms/TextInput/TextInput */ "./resources/js/components/atomic/Atoms/TextInput/TextInput.jsx");
-/* harmony import */ var _BarcodeReader__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../BarcodeReader */ "./resources/js/components/atomic/Organisms/BarcodeReader.jsx");
-/* harmony import */ var _Atoms_Button_Button__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../Atoms/Button/Button */ "./resources/js/components/atomic/Atoms/Button/Button.jsx");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
-
+/* harmony import */ var _Atoms_TextInput_TextInput__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../Atoms/TextInput/TextInput */ "./resources/js/components/atomic/Atoms/TextInput/TextInput.jsx");
+/* harmony import */ var _BarcodeReader__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../BarcodeReader */ "./resources/js/components/atomic/Organisms/BarcodeReader.jsx");
+/* harmony import */ var _Atoms_Button_Button__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../Atoms/Button/Button */ "./resources/js/components/atomic/Atoms/Button/Button.jsx");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 
 
 
@@ -2519,16 +2567,14 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var RakutenSearchForm = function RakutenSearchForm(props) {
-  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    // setStocks(stockList)
-    console.log("barcode:".concat(props.barcode));
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {// setStocks(stockList)
   }, [props.barcode]);
   return (
     /*#__PURE__*/
     // <form action="/products/search" method={'GET'}>
     // </form>
-    (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.Fragment, {
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_Atoms_TextInput_TextInput__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.Fragment, {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_Atoms_TextInput_TextInput__WEBPACK_IMPORTED_MODULE_1__["default"], {
         type: 'text',
         name: 'barcode',
         value: props.barcode,
@@ -2536,7 +2582,7 @@ var RakutenSearchForm = function RakutenSearchForm(props) {
         required: true,
         className: "",
         id: 'barcode'
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_Atoms_Button_Button__WEBPACK_IMPORTED_MODULE_4__["default"], {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_Atoms_Button_Button__WEBPACK_IMPORTED_MODULE_3__["default"], {
         className: "btn btn-secondary",
         onClick: function onClick() {
           return props.fetchRakutenProducts(props.barcode);
@@ -2551,9 +2597,9 @@ var RakutenSearchForm = function RakutenSearchForm(props) {
 
 /***/ }),
 
-/***/ "./resources/js/components/atomic/Organisms/Modal/addStockModal.jsx":
+/***/ "./resources/js/components/atomic/Organisms/Modal/AddStockModal.jsx":
 /*!**************************************************************************!*\
-  !*** ./resources/js/components/atomic/Organisms/Modal/addStockModal.jsx ***!
+  !*** ./resources/js/components/atomic/Organisms/Modal/AddStockModal.jsx ***!
   \**************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -2565,7 +2611,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var _BarcodeReader__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../BarcodeReader */ "./resources/js/components/atomic/Organisms/BarcodeReader.jsx");
 /* harmony import */ var _Atoms_Button_Button__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../Atoms/Button/Button */ "./resources/js/components/atomic/Atoms/Button/Button.jsx");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _Molecules_List_ListWithImage__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../Molecules/List/ListWithImage */ "./resources/js/components/atomic/Molecules/List/ListWithImage.jsx");
+/* harmony import */ var _Molecules_Form_BasicForm__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../Molecules/Form/BasicForm */ "./resources/js/components/atomic/Molecules/Form/BasicForm.jsx");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
 
 
 
@@ -2573,55 +2623,56 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var AddStockModal = function AddStockModal(props) {
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
     "class": "modal fade",
     id: "exampleModal",
     tabindex: "-1",
     role: "dialog",
     "aria-labelledby": "exampleModalLabel",
     "aria-hidden": "true",
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
       "class": "modal-dialog",
       role: "document",
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
         "class": "modal-content",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
           "class": "modal-header",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("h5", {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("h5", {
             "class": "modal-title",
             id: "exampleModalLabel",
             children: "Modal title"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("button", {
             type: "button",
             "class": "close",
             "data-dismiss": "modal",
             "aria-label": "Close",
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
               "aria-hidden": "true",
               children: "\xD7"
             })
           })]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
           "class": "modal-body",
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_BarcodeReader__WEBPACK_IMPORTED_MODULE_1__["default"], {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_BarcodeReader__WEBPACK_IMPORTED_MODULE_1__["default"], {
             barcode: props.barcode,
             inputBarCode: props.inputBarCode,
             setBarCode: props.setBarCode,
             fetchRakutenProducts: function fetchRakutenProducts() {
               return props.fetchRakutenProducts();
             }
-          })
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_Molecules_List_ListWithImage__WEBPACK_IMPORTED_MODULE_3__["default"], {
+            list: props.list
+          })]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
           "class": "modal-footer",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
-            className: "btn btn-secondary",
-            onClick: function onClick() {
-              return props.fetchRakutenProducts();
-            },
-            children: "\u691C\u7D22"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_Molecules_Form_BasicForm__WEBPACK_IMPORTED_MODULE_4__["default"], {
+            action: '/stocks/store',
+            method: 'POST',
+            buttonName: '追加',
+            data: props.list
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("button", {
             type: "button",
-            "class": "btn btn-primary",
+            "class": "btn btn-secondary",
             "data-dismiss": "modal",
             children: "Close"
           })]
@@ -2650,7 +2701,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Molecules_Theader_TDataRow__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../Molecules/Theader/TDataRow */ "./resources/js/components/atomic/Molecules/Theader/TDataRow.jsx");
 /* harmony import */ var _Molecules_Theader_TheaderRow__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../Molecules/Theader/TheaderRow */ "./resources/js/components/atomic/Molecules/Theader/TheaderRow.jsx");
 /* harmony import */ var _Atoms_Image_Image__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../Atoms/Image/Image */ "./resources/js/components/atomic/Atoms/Image/Image.jsx");
-/* harmony import */ var _Atoms_Form_Form__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../Atoms/Form/Form */ "./resources/js/components/atomic/Atoms/Form/Form.jsx");
+/* harmony import */ var _Molecules_Form_BasicForm__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../Molecules/Form/BasicForm */ "./resources/js/components/atomic/Molecules/Form/BasicForm.jsx");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 
 
@@ -2685,14 +2736,16 @@ var Table = function Table(props) {
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("td", {
             children: data.expiryDate
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("td", {
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_Atoms_Form_Form__WEBPACK_IMPORTED_MODULE_4__["default"], {
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_Molecules_Form_BasicForm__WEBPACK_IMPORTED_MODULE_4__["default"], {
               action: props.formInfo.action + data.id,
-              method: props.formInfo.method
+              method: props.formInfo.method,
+              buttonName: props.buttonName
             })
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("td", {
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_Atoms_Form_Form__WEBPACK_IMPORTED_MODULE_4__["default"], {
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_Molecules_Form_BasicForm__WEBPACK_IMPORTED_MODULE_4__["default"], {
               action: props.formInfo.action,
-              method: props.formInfo.method
+              method: props.formInfo.method,
+              buttonName: props.buttonName
             })
           })]
         });
@@ -2720,7 +2773,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
 /* harmony import */ var _Organisms_Table_Table__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../Organisms/Table/Table */ "./resources/js/components/atomic/Organisms/Table/Table.jsx");
 /* harmony import */ var _Atoms_Button_Button__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../Atoms/Button/Button */ "./resources/js/components/atomic/Atoms/Button/Button.jsx");
-/* harmony import */ var _Organisms_Modal_addStockModal__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../Organisms/Modal/addStockModal */ "./resources/js/components/atomic/Organisms/Modal/addStockModal.jsx");
+/* harmony import */ var _Organisms_Modal_AddStockModal__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../Organisms/Modal/AddStockModal */ "./resources/js/components/atomic/Organisms/Modal/AddStockModal.jsx");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_5__);
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
@@ -2754,8 +2807,6 @@ var Stock = function Stock() {
     stockList = JSON.parse(element.dataset.stocks);
   }
 
-  console.log(e);
-
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
       _useState2 = _slicedToArray(_useState, 2),
       stocks = _useState2[0],
@@ -2776,7 +2827,6 @@ var Stock = function Stock() {
   }, [setBarCode]);
 
   var _fetchRakutenProducts = function fetchRakutenProducts() {
-    console.log(barcode);
     axios__WEBPACK_IMPORTED_MODULE_5___default().get('/api/products/search', {
       params: {
         // ここにクエリパラメータを指定する
@@ -2784,12 +2834,10 @@ var Stock = function Stock() {
       }
     }).then(function (res) {
       var rakutenProducts = res.data;
-      console.log(res);
       setRakutenItemList(rakutenProducts);
     });
   };
 
-  console.log(barcode);
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     setStocks(stockList);
   }, []);
@@ -2815,13 +2863,27 @@ var Stock = function Stock() {
         action: '/stocks/delete/',
         method: 'POST'
       }]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_Organisms_Modal_addStockModal__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_Organisms_Modal_AddStockModal__WEBPACK_IMPORTED_MODULE_4__["default"], {
       barcode: barcode,
       inputBarCode: inputBarCode,
       setBarCode: setBarCode,
       fetchRakutenProducts: function fetchRakutenProducts() {
         return _fetchRakutenProducts();
-      }
+      },
+      list: rakutenItemList,
+      addStock: function (_addStock) {
+        function addStock() {
+          return _addStock.apply(this, arguments);
+        }
+
+        addStock.toString = function () {
+          return _addStock.toString();
+        };
+
+        return addStock;
+      }(function () {
+        return addStock();
+      })
     })]
   });
 };

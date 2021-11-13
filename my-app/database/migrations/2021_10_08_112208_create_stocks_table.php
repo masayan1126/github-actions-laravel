@@ -23,7 +23,7 @@ class CreateStocksTable extends Migration
             $table->string('image_url');
             $table->string('url');
             $table->integer('number');
-            $table->date('expiry_date');
+            $table->date('expiry_date')->nullable();
             $table->timestamps();
         });
     }

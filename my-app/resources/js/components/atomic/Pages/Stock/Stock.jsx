@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react'
 import ReactDOM from 'react-dom'
 import Table from '../../Organisms/Table/Table'
 import Button from '../../Atoms/Button/Button'
-import AddStockModal from '../../Organisms/Modal/addStockModal'
+import AddStockModal from '../../Organisms/Modal/AddStockModal'
 import axios from 'axios'
 
 const Stock = () => {
@@ -13,8 +13,6 @@ const Stock = () => {
     if (element && element.dataset.stocks) {
         stockList = JSON.parse(element.dataset.stocks)
     }
-
-    console.log(e)
 
     const [stocks, setStocks] = useState([])
     const [barcode, setBarCode] = useState('')
@@ -28,7 +26,6 @@ const Stock = () => {
     )
 
     const fetchRakutenProducts = () => {
-        console.log(barcode)
         axios
             .get('/api/products/search', {
                 params: {
@@ -38,12 +35,9 @@ const Stock = () => {
             })
             .then((res) => {
                 const rakutenProducts = res.data
-                console.log(res)
                 setRakutenItemList(rakutenProducts)
             })
     }
-
-    console.log(barcode)
 
     useEffect(() => {
         setStocks(stockList)
@@ -79,6 +73,8 @@ const Stock = () => {
                 inputBarCode={inputBarCode}
                 setBarCode={setBarCode}
                 fetchRakutenProducts={() => fetchRakutenProducts()}
+                list={rakutenItemList}
+                addStock={() => addStock()}
             />
         </div>
     )

@@ -2,7 +2,7 @@ import React, { useCallback, useState, useEffect } from 'react'
 import TDataRow from '../../Molecules/Theader/TDataRow'
 import THeaderRow from '../../Molecules/Theader/TheaderRow'
 import Image from '../../Atoms/Image/Image'
-import Form from '../../Atoms/Form/Form'
+import BasicForm from '../../Molecules/Form/BasicForm'
 
 const Table = (props) => {
     return (
@@ -24,16 +24,18 @@ const Table = (props) => {
                         <td>{data.number}</td>
                         <td>{data.expiryDate}</td>
                         <td>
-                            <Form
+                            <BasicForm
                                 action={props.formInfo.action + data.id}
                                 method={props.formInfo.method}
-                            ></Form>
+                                buttonName={props.buttonName}
+                            ></BasicForm>
                         </td>
                         <td>
-                            <Form
+                            <BasicForm
                                 action={props.formInfo.action}
                                 method={props.formInfo.method}
-                            ></Form>
+                                buttonName={props.buttonName}
+                            ></BasicForm>
                         </td>
                     </>
                 ))}

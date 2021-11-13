@@ -3,6 +3,7 @@
 namespace Zaico\Application\Stock;
 
 use Zaico\Domain\Stock\Repository\StockRepository;
+use Zaico\Domain\Stock\Stock;
 
 class StockStoreService
 {
@@ -13,8 +14,8 @@ class StockStoreService
         $this->stockRepository = $stockRepository;
     }
 
-    public function exec($data)
+    public function exec(Stock $stock)
     {
-        $this->stockRepository->save($data);
+        $this->stockRepository->save($stock);
     }
 }

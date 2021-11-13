@@ -46,7 +46,7 @@ class RakutenProductSearchController extends Controller
                 );
 
             $rakutenItemList = RakutenItemTransformer::transform($rakutenItem);
-            return $rakutenItemList;
+            return [$rakutenItemList];
         }
     }
 }
