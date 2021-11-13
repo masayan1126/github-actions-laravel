@@ -10,6 +10,7 @@ const TextInput = (props) => {
             onChange={props.onChange}
             required={props.required}
             id={props.id}
+            onClick={props.onClick}
         />
     )
 }

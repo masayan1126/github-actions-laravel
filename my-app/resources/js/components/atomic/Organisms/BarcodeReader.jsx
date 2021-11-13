@@ -48,6 +48,7 @@ const BarcodeReader = (props) => {
                 barcode={props.barcode}
                 inputBarCode={props.inputBarCode}
                 setBarCode={props.setBarCode}
+                fetchRakutenProducts={() => props.fetchRakutenProducts()}
             />
         </div>
     )

@@ -2338,7 +2338,8 @@ var TextInput = function TextInput(props) {
     className: props.className,
     onChange: props.onChange,
     required: props.required,
-    id: props.id
+    id: props.id,
+    onClick: props.onClick
   });
 };
 
@@ -2479,7 +2480,10 @@ var BarcodeReader = function BarcodeReader(props) {
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_Form_RakutenSearchForm__WEBPACK_IMPORTED_MODULE_3__["default"], {
       barcode: props.barcode,
       inputBarCode: props.inputBarCode,
-      setBarCode: props.setBarCode
+      setBarCode: props.setBarCode,
+      fetchRakutenProducts: function fetchRakutenProducts() {
+        return props.fetchRakutenProducts();
+      }
     })]
   });
 };
@@ -2503,7 +2507,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Atoms_Form_Form__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../Atoms/Form/Form */ "./resources/js/components/atomic/Atoms/Form/Form.jsx");
 /* harmony import */ var _Atoms_TextInput_TextInput__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../Atoms/TextInput/TextInput */ "./resources/js/components/atomic/Atoms/TextInput/TextInput.jsx");
 /* harmony import */ var _BarcodeReader__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../BarcodeReader */ "./resources/js/components/atomic/Organisms/BarcodeReader.jsx");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _Atoms_Button_Button__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../Atoms/Button/Button */ "./resources/js/components/atomic/Atoms/Button/Button.jsx");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
 
 
 
@@ -2512,24 +2519,32 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var RakutenSearchForm = function RakutenSearchForm(props) {
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("form", {
-    action: "/products/search",
-    method: 'GET',
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_Atoms_TextInput_TextInput__WEBPACK_IMPORTED_MODULE_2__["default"], {
-      type: 'text',
-      name: 'barcode',
-      value: props.barcode,
-      onChange: props.inputBarCode,
-      required: true,
-      className: "",
-      id: 'barcode'
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_Atoms_TextInput_TextInput__WEBPACK_IMPORTED_MODULE_2__["default"], {
-      type: 'submit',
-      name: '',
-      value: '追加する',
-      className: "btn btn-secondary"
-    })]
-  });
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    // setStocks(stockList)
+    console.log("barcode:".concat(props.barcode));
+  }, [props.barcode]);
+  return (
+    /*#__PURE__*/
+    // <form action="/products/search" method={'GET'}>
+    // </form>
+    (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.Fragment, {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_Atoms_TextInput_TextInput__WEBPACK_IMPORTED_MODULE_2__["default"], {
+        type: 'text',
+        name: 'barcode',
+        value: props.barcode,
+        onChange: props.inputBarCode,
+        required: true,
+        className: "",
+        id: 'barcode'
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_Atoms_Button_Button__WEBPACK_IMPORTED_MODULE_4__["default"], {
+        className: "btn btn-secondary",
+        onClick: function onClick() {
+          return props.fetchRakutenProducts(props.barcode);
+        },
+        buttonName: '検索する'
+      })]
+    })
+  );
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (RakutenSearchForm);
@@ -2549,59 +2564,66 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var _BarcodeReader__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../BarcodeReader */ "./resources/js/components/atomic/Organisms/BarcodeReader.jsx");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _Atoms_Button_Button__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../Atoms/Button/Button */ "./resources/js/components/atomic/Atoms/Button/Button.jsx");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
 
 
 
 
 
 var AddStockModal = function AddStockModal(props) {
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
     "class": "modal fade",
     id: "exampleModal",
     tabindex: "-1",
     role: "dialog",
     "aria-labelledby": "exampleModalLabel",
     "aria-hidden": "true",
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
       "class": "modal-dialog",
       role: "document",
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
         "class": "modal-content",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
           "class": "modal-header",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h5", {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("h5", {
             "class": "modal-title",
             id: "exampleModalLabel",
             children: "Modal title"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
             type: "button",
             "class": "close",
             "data-dismiss": "modal",
             "aria-label": "Close",
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
               "aria-hidden": "true",
               children: "\xD7"
             })
           })]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
           "class": "modal-body",
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_BarcodeReader__WEBPACK_IMPORTED_MODULE_1__["default"], {
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_BarcodeReader__WEBPACK_IMPORTED_MODULE_1__["default"], {
             barcode: props.barcode,
             inputBarCode: props.inputBarCode,
-            setBarCode: props.setBarCode
+            setBarCode: props.setBarCode,
+            fetchRakutenProducts: function fetchRakutenProducts() {
+              return props.fetchRakutenProducts();
+            }
           })
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
           "class": "modal-footer",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
-            type: "button",
-            "class": "btn btn-secondary",
-            "data-dismiss": "modal",
-            children: "Close"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
+            className: "btn btn-secondary",
+            onClick: function onClick() {
+              return props.fetchRakutenProducts();
+            },
+            children: "\u691C\u7D22"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
             type: "button",
             "class": "btn btn-primary",
-            children: "Save changes"
+            "data-dismiss": "modal",
+            children: "Close"
           })]
         })]
       })
@@ -2640,7 +2662,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var Table = function Table(props) {
-  console.log(props.dataList);
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("table", {
     className: "table",
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("thead", {
@@ -2700,7 +2721,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Organisms_Table_Table__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../Organisms/Table/Table */ "./resources/js/components/atomic/Organisms/Table/Table.jsx");
 /* harmony import */ var _Atoms_Button_Button__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../Atoms/Button/Button */ "./resources/js/components/atomic/Atoms/Button/Button.jsx");
 /* harmony import */ var _Organisms_Modal_addStockModal__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../Organisms/Modal/addStockModal */ "./resources/js/components/atomic/Organisms/Modal/addStockModal.jsx");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -2712,6 +2735,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
@@ -2742,27 +2766,46 @@ var Stock = function Stock() {
       barcode = _useState4[0],
       setBarCode = _useState4[1];
 
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
+      _useState6 = _slicedToArray(_useState5, 2),
+      rakutenItemList = _useState6[0],
+      setRakutenItemList = _useState6[1];
+
   var inputBarCode = (0,react__WEBPACK_IMPORTED_MODULE_0__.useCallback)(function (event) {
     setBarCode(event.target.value);
   }, [setBarCode]);
+
+  var _fetchRakutenProducts = function fetchRakutenProducts() {
+    console.log(barcode);
+    axios__WEBPACK_IMPORTED_MODULE_5___default().get('/api/products/search', {
+      params: {
+        // ここにクエリパラメータを指定する
+        barcode: barcode
+      }
+    }).then(function (res) {
+      var rakutenProducts = res.data;
+      console.log(res);
+      setRakutenItemList(rakutenProducts);
+    });
+  };
+
   console.log(barcode);
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     setStocks(stockList);
   }, []);
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
     className: "container",
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("h4", {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("h4", {
       children: "\u5728\u5EAB\u4E00\u89A7"
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
       className: "text-right",
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_Atoms_Button_Button__WEBPACK_IMPORTED_MODULE_3__["default"], {
-        className: 'btn btn-primary' // onClick={}
-        ,
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_Atoms_Button_Button__WEBPACK_IMPORTED_MODULE_3__["default"], {
+        className: 'btn btn-primary',
         buttonName: '在庫を追加する',
         dataToggle: "modal",
         dataTarget: "#exampleModal"
       })
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_Organisms_Table_Table__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_Organisms_Table_Table__WEBPACK_IMPORTED_MODULE_2__["default"], {
       headerList: ['商品ID', '商品画像', '商品名', '在庫数', '賞味期限'],
       dataList: stocks,
       formInfo: [{
@@ -2772,10 +2815,13 @@ var Stock = function Stock() {
         action: '/stocks/delete/',
         method: 'POST'
       }]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_Organisms_Modal_addStockModal__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_Organisms_Modal_addStockModal__WEBPACK_IMPORTED_MODULE_4__["default"], {
       barcode: barcode,
       inputBarCode: inputBarCode,
-      setBarCode: setBarCode
+      setBarCode: setBarCode,
+      fetchRakutenProducts: function fetchRakutenProducts() {
+        return _fetchRakutenProducts();
+      }
     })]
   });
 };
@@ -2783,7 +2829,7 @@ var Stock = function Stock() {
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Stock);
 
 if (document.getElementById('stock')) {
-  react_dom__WEBPACK_IMPORTED_MODULE_1__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(Stock, {}), document.getElementById('stock'));
+  react_dom__WEBPACK_IMPORTED_MODULE_1__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(Stock, {}), document.getElementById('stock'));
 }
 
 /***/ }),

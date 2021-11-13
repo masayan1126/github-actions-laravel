@@ -6,9 +6,10 @@ namespace Zaico\Domain\String;
 class Str
 {
     // 対象の文字列
-    private string $theString = '';
+    // private string $theString = '';
 
-    public function __construct(string $theString)
+    // 8.0以上で使用できるオブジェクト初期化子
+    public function __construct(private string $theString = '')
     {
         $this->theString = $theString;
     }

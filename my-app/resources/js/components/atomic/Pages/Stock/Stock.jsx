@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom'
 import Table from '../../Organisms/Table/Table'
 import Button from '../../Atoms/Button/Button'
 import AddStockModal from '../../Organisms/Modal/addStockModal'
+import axios from 'axios'
 
 const Stock = () => {
     const element = document.getElementById('stock')
@@ -17,6 +18,7 @@ const Stock = () => {
 
     const [stocks, setStocks] = useState([])
     const [barcode, setBarCode] = useState('')
+    const [rakutenItemList, setRakutenItemList] = useState([])
 
     const inputBarCode = useCallback(
         (event) => {
@@ -24,6 +26,22 @@ const Stock = () => {
         },
         [setBarCode]
     )
+
+    const fetchRakutenProducts = () => {
+        console.log(barcode)
+        axios
+            .get('/api/products/search', {
+                params: {
+                    // ここにクエリパラメータを指定する
+                    barcode: barcode
+                }
+            })
+            .then((res) => {
+                const rakutenProducts = res.data
+                console.log(res)
+                setRakutenItemList(rakutenProducts)
+            })
+    }
 
     console.log(barcode)
 
@@ -37,7 +55,6 @@ const Stock = () => {
             <div className="text-right">
                 <Button
                     className={'btn btn-primary'}
-                    // onClick={}
                     buttonName={'在庫を追加する'}
                     dataToggle="modal"
                     dataTarget="#exampleModal"
@@ -61,6 +78,7 @@ const Stock = () => {
                 barcode={barcode}
                 inputBarCode={inputBarCode}
                 setBarCode={setBarCode}
+                fetchRakutenProducts={() => fetchRakutenProducts()}
             />
         </div>
     )

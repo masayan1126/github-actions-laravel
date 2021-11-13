@@ -15,7 +15,7 @@ class RakutenProductSearchController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function __invoke(
+    public function index(
         Request $request,
         RakutenRws_Client $client,
         RakutenItem $rakutenItem
@@ -46,9 +46,7 @@ class RakutenProductSearchController extends Controller
                 );
 
             $rakutenItemList = RakutenItemTransformer::transform($rakutenItem);
-            return redirect()
-                ->route('stocks.index')
-                ->with(compact('rakutenItemList'));
+            return $rakutenItemList;
         }
     }
 }

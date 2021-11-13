@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\stock;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Zaico\Application\Stock\StockFetchService;
 use Zaico\Application\Stock\StockFindService;
 use Zaico\Application\Stock\StockStoreService;
@@ -21,12 +22,11 @@ class StockController extends Controller
     public function index(StockFetchService $stockFetchService)
     {
         //
-        $userId = 1;
 
         $stocks = json_encode(
             array_map(
                 fn($modelStock) => StockTransformer::transform($modelStock),
-                $stockFetchService->exec($userId)
+                $stockFetchService->exec(Auth::id())
             )
         );
 

@@ -5,8 +5,6 @@ import Image from '../../Atoms/Image/Image'
 import Form from '../../Atoms/Form/Form'
 
 const Table = (props) => {
-    console.log(props.dataList)
-
     return (
         <table className="table">
             <thead>

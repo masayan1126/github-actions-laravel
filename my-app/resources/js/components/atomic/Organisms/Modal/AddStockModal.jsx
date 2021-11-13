@@ -1,5 +1,6 @@
 import React, { useCallback, useState, useEffect } from 'react'
 import BarcodeReader from '../BarcodeReader'
+import Button from '../../Atoms/Button/Button'
 
 const AddStockModal = (props) => {
     return (
@@ -31,9 +32,18 @@ const AddStockModal = (props) => {
                             barcode={props.barcode}
                             inputBarCode={props.inputBarCode}
                             setBarCode={props.setBarCode}
+                            fetchRakutenProducts={() =>
+                                props.fetchRakutenProducts()
+                            }
                         />
                     </div>
                     <div class="modal-footer">
+                        <button
+                            className="btn btn-secondary"
+                            onClick={() => props.fetchRakutenProducts()}
+                        >
+                            検索
+                        </button>
                         <button
                             type="button"
                             class="btn btn-primary"
