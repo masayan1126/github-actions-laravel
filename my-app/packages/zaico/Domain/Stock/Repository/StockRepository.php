@@ -14,5 +14,5 @@ interface StockRepository
 
     public function save(Stock $stock): void;
 
-    public function update($data): void;
+    public function update(Stock $stock): void;
 }
