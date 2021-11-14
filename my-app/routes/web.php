@@ -26,12 +26,13 @@ Route::get('/home', [
     'index',
 ])->name('home');
 
-Route::group(['middleware' => 'auth'], function () {
-    Route::get('/users', [UserController::class, 'index']);
-    Route::post('/stocks/store', [StockController::class, 'store']);
-    Route::get('/stocks', [StockController::class, 'index'])->name(
-        'stocks.index'
-    );
-    Route::get('/stocks/edit/{id}', [StockController::class, 'edit']);
-    Route::post('/stocks/update/{id}', [StockController::class, 'update']);
-});
+Route::middleware('auth')
+    ->prefix('stocks')
+    ->group(function () {
+        Route::post('/store', [StockController::class, 'store']);
+        Route::get('', [StockController::class, 'index'])->name('stocks.index');
+        Route::get('/edit/{id}', [StockController::class, 'edit']);
+        Route::post('/update/{id}', [StockController::class, 'update']);
+    });
+
+Route::get('/users', [UserController::class, 'index']);
