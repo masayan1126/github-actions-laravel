@@ -53,14 +53,9 @@ class StockRepositoryImplTest extends TestCase
     public function 永続化できる()
     {
         $stock = new Stock();
-<<<<<<< HEAD
-
         $stock
             ->setId(1)
-=======
-        $stock
-            ->setId(2)
->>>>>>> dd189bbf0ecd45db5c1fd39c44f78f285d2ee691
+
             ->setUserId(1)
             ->setName('ガム')
             ->setImageUrl(
