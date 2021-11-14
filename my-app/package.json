@@ -25,6 +25,7 @@
         "sass-loader": "^11.0.1"
     },
     "dependencies": {
-        "quagga": "^0.12.1"
+        "quagga": "^0.12.1",
+        "styled-components": "^5.3.3"
     }
 }

@@ -62,7 +62,6 @@ class StockController extends Controller
     public function store(
         Request $request,
         StockStoreService $stockStoreService,
-        ModelStock $modelStock,
         Stock $stock
     ) {
         $data = json_decode($request->data);
@@ -120,13 +119,19 @@ class StockController extends Controller
      */
     public function update(
         Request $request,
-        StockUpdateService $stockUpdateService
+        StockUpdateService $stockUpdateService,
+        Stock $stock
     ) {
-        //
+        $data = json_decode($request->data);
+        $stock
+            ->setId($data[0]->id)
+            ->setUserId($data[0]->userId)
+            ->setName($data[0]->name)
+            ->setImageUrl($data[0]->imageUrl)
+            ->setUrl($data[0]->url)
+            ->setNumber($data[0]->number);
 
-        // dd($request->all());
-
-        $stockUpdateService->exec($request->all());
+        $stockUpdateService->exec($stock);
 
         return redirect('/stocks');
     }

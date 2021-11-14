@@ -21,10 +21,6 @@ class ModelStock extends Model
         'expiry_date',
     ];
 
-    // public function toDomain(): Stock
-    // {
-    // }
-
     public function user()
     {
         return $this->hasMany(ModelUser::class);

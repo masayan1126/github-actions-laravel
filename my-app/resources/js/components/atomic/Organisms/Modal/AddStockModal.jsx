@@ -2,32 +2,30 @@ import React, { useCallback, useState, useEffect } from 'react'
 import BarcodeReader from '../BarcodeReader'
 import Button from '../../Atoms/Button/Button'
 import ListWithImage from '../../Molecules/List/ListWithImage'
-import BasicForm from '../../Molecules/Form/BasicForm'
+import BasicRegisterForm from '../../Molecules/Form/BasicRegisterForm'
+import ModalCloseButton from '../../Atoms/Button/ModalCloseButton'
 
 const AddStockModal = (props) => {
     return (
         <div
             class="modal fade"
-            id="exampleModal"
-            tabindex="-1"
+            id="addStockModal"
             role="dialog"
-            aria-labelledby="exampleModalLabel"
+            aria-labelledby="addStockModalLabel"
             aria-hidden="true"
         >
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">
-                            Modal title
+                        <h5 class="modal-title" id="addStockModalLabel">
+                            商品検索
                         </h5>
-                        <button
+                        <ModalCloseButton
                             type="button"
-                            class="close"
-                            data-dismiss="modal"
-                            aria-label="Close"
-                        >
-                            <span aria-hidden="true">&times;</span>
-                        </button>
+                            className="close"
+                            dataDismiss="modal"
+                            ariaLabel="Close"
+                        />
                     </div>
                     <div class="modal-body">
                         <BarcodeReader
@@ -41,19 +39,11 @@ const AddStockModal = (props) => {
                         <ListWithImage list={props.list} />
                     </div>
                     <div class="modal-footer">
-                        <BasicForm
+                        <BasicRegisterForm
                             action={'/stocks/store'}
                             method={'POST'}
-                            buttonName={'追加'}
                             data={props.list}
-                        ></BasicForm>
-                        <button
-                            type="button"
-                            class="btn btn-secondary"
-                            data-dismiss="modal"
-                        >
-                            Close
-                        </button>
+                        ></BasicRegisterForm>
                     </div>
                 </div>
             </div>

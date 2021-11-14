@@ -6,3 +6,11 @@
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+
+.barcodeReaderContainer > video, canvas {
+    width: 100%;
+}
+
+#interactive.viewport canvas.drawingBuffer, video.drawingBuffer {
+    margin-left: -640px;
+  }

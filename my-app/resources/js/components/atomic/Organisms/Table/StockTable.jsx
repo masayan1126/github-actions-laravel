@@ -1,10 +1,9 @@
 import React, { useCallback, useState, useEffect } from 'react'
-import TDataRow from '../../Molecules/Theader/TDataRow'
 import THeaderRow from '../../Molecules/Theader/TheaderRow'
 import Image from '../../Atoms/Image/Image'
 import BasicForm from '../../Molecules/Form/BasicForm'
 
-const Table = (props) => {
+const StockTable = (props) => {
     return (
         <table className="table">
             <thead>
@@ -12,7 +11,7 @@ const Table = (props) => {
             </thead>
             <tbody>
                 {props.dataList.map((data) => (
-                    <>
+                    <tr>
                         <td>{data.id}</td>
                         <td>
                             <Image
@@ -25,24 +24,23 @@ const Table = (props) => {
                         <td>{data.expiryDate}</td>
                         <td>
                             <BasicForm
-                                action={props.formInfo.action + data.id}
-                                method={props.formInfo.method}
-                                buttonName={props.buttonName}
-                            ></BasicForm>
+                                action={'/stocks/edit/' + data.id}
+                                method={'GET'}
+                                buttonName={'編集'}
+                            />
                         </td>
                         <td>
                             <BasicForm
-                                action={props.formInfo.action}
-                                method={props.formInfo.method}
-                                buttonName={props.buttonName}
+                                action={'/stocks/delete/' + data.id}
+                                buttonName={'削除'}
+                                method={'POST'}
                             ></BasicForm>
                         </td>
-                    </>
+                    </tr>
                 ))}
-                {/* <TDataRow dataList={props.dataList} /> */}
             </tbody>
         </table>
     )
 }
 
-export default Table
+export default StockTable
