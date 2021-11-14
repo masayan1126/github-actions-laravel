@@ -19,16 +19,20 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/users', [UserController::class, 'index']);
-
-Route::post('/stocks/store', [StockController::class, 'store']);
-Route::get('/stocks', [StockController::class, 'index'])->name('stocks.index');
-Route::get('/stocks/edit/{id}', [StockController::class, 'edit']);
-Route::post('/stocks/update/{id}', [StockController::class, 'update']);
-
 Auth::routes();
 
 Route::get('/home', [
     App\Http\Controllers\HomeController::class,
     'index',
 ])->name('home');
+
+Route::middleware('auth')
+    ->prefix('stocks')
+    ->group(function () {
+        Route::post('/store', [StockController::class, 'store']);
+        Route::get('', [StockController::class, 'index'])->name('stocks.index');
+        Route::get('/edit/{id}', [StockController::class, 'edit']);
+        Route::post('/update/{id}', [StockController::class, 'update']);
+    });
+
+Route::get('/users', [UserController::class, 'index']);

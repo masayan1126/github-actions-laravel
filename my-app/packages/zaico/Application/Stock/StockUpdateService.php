@@ -3,6 +3,7 @@
 namespace Zaico\Application\Stock;
 
 use Zaico\Domain\Stock\Repository\StockRepository;
+use Zaico\Domain\Stock\Stock;
 
 class StockUpdateService
 {
@@ -13,8 +14,8 @@ class StockUpdateService
         $this->stockRepository = $stockRepository;
     }
 
-    public function exec($data)
+    public function exec(Stock $stock)
     {
-        $this->stockRepository->update($data);
+        $this->stockRepository->update($stock);
     }
 }

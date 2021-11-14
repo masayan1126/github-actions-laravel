@@ -5,10 +5,7 @@ const TDataRow = (props) => {
     return (
         <tr>
             {props.dataList.map((data) => (
-                <>
-                    <TData data={data.id} />
-                    <TData data={data.name} />
-                </>
+                <TData data={data} />
             ))}
         </tr>
     )
