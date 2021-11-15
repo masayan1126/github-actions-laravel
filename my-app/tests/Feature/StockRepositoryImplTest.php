@@ -50,12 +50,50 @@ class StockRepositoryImplTest extends TestCase
      *
      * @test
      */
+    public function 主キー検索できる()
+    {
+        $stockFindService = new StockFindService($this->stockRepository);
+        $actual = $stockFindService->exec($stockId = 1);
+
+        $stock = new Stock();
+        $stock
+            ->setId(1)
+            ->setUserId(1)
+            ->setName('ガム')
+            ->setImageUrl(
+                'http://thumbnail.image.rakuten.co.jp/@0_mall/jetprice/cabinet/107/800364.jpg?_ex=128x128'
+            )
+            ->setUrl('https://item.rakuten.co.jp/jetprice/x21203/')
+            ->setNumber(7)
+            ->setExpiryDate('2021-09-10');
+
+        $this->assertEquals($stock, $actual);
+    }
+
+    /**
+     * A basic feature test example.
+     *
+     * @test
+     */
+    public function ユーザーIDで検索できる()
+    {
+        $userRepository = new UserRepositoryImpl();
+
+        $actual = $userRepository->findById(1);
+
+        $this->assertEquals($this->users[0]->toDomain(), $actual);
+    }
+
+    /**
+     * A basic feature test example.
+     *
+     * @test
+     */
     public function 永続化できる()
     {
         $stock = new Stock();
         $stock
-            ->setId(1)
-
+            ->setId(2)
             ->setUserId(1)
             ->setName('ガム')
             ->setImageUrl(
@@ -93,7 +131,7 @@ class StockRepositoryImplTest extends TestCase
     //     $targetStock
     //         // ->setId(1)
     //         // ->setUserId(1)
-    //         ->setName(2)
+    //         ->setName('チョコロールケーキ')
     //         ->setImageUrl(
     //             'http://thumbnail.image.rakuten.co.jp/@0_mall/jetprice/cabinet/107/800364.jpg?_ex=128x128'
     //         )
@@ -107,7 +145,7 @@ class StockRepositoryImplTest extends TestCase
     //     $this->assertDatabaseHas('stocks', [
     //         'id' => 1,
     //         'user_id' => 1,
-    //         'name' => 2,
+    //         'name' => 'チョコロールケーキ',
     //         'image_url' =>
     //             'http://thumbnail.image.rakuten.co.jp/@0_mall/jetprice/cabinet/107/800364.jpg?_ex=128x128',
     //         'url' => 'https://item.rakuten.co.jp/jetprice/x21203/',
@@ -115,43 +153,4 @@ class StockRepositoryImplTest extends TestCase
     //         'expiry_date' => '2021-09-11',
     //     ]);
     // }
-
-    /**
-     * A basic feature test example.
-     *
-     * @test
-     */
-    public function 主キー検索できる()
-    {
-        $stockFindService = new StockFindService($this->stockRepository);
-        $actual = $stockFindService->exec($stockId = 1);
-
-        $stock = new Stock();
-        $stock
-            ->setId(1)
-            ->setUserId(1)
-            ->setName('ガム')
-            ->setImageUrl(
-                'http://thumbnail.image.rakuten.co.jp/@0_mall/jetprice/cabinet/107/800364.jpg?_ex=128x128'
-            )
-            ->setUrl('https://item.rakuten.co.jp/jetprice/x21203/')
-            ->setNumber(7)
-            ->setExpiryDate('2021-09-10');
-
-        $this->assertEquals($stock, $actual);
-    }
-
-    /**
-     * A basic feature test example.
-     *
-     * @test
-     */
-    public function ユーザーIDで検索できる()
-    {
-        $userRepository = new UserRepositoryImpl();
-
-        $actual = $userRepository->findById(1);
-
-        $this->assertEquals($this->users[0]->toDomain(), $actual);
-    }
 }

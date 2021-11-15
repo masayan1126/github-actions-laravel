@@ -5,6 +5,7 @@ namespace Zaico\Application\RakutenProduct;
 use Illuminate\Http\Request;
 use RakutenRws_Client;
 use Zaico\Domain\RakutenItem\RakutenItem;
+use Zaico\Domain\RakutenItem\RakutenItemTransformer;
 
 class RakutenProductSearchService
 {
@@ -19,9 +20,9 @@ class RakutenProductSearchService
         $this->rakutenItem = $rakutenItem;
     }
 
-    public function exec(Request $request): array
+    public function exec(Request $request, mixed $rakutenAppId): array
     {
-        $this->client->setApplicationId(config('app.rakuten_id'));
+        $this->client->setApplicationId($rakutenAppId);
         $responseData = $this->search($request->input('barcode'));
         $this->toRakutenItemDomain($responseData);
 
