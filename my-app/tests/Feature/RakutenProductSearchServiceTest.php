@@ -21,6 +21,6 @@ class RakutenProductSearchServiceTest extends TestCase
 
         $request = new Request([]);
 
-        $this->assertEquals([], $mock->exec($request));
+        $this->assertEquals([], $mock->exec($request, '483949379'));
     }
 }
