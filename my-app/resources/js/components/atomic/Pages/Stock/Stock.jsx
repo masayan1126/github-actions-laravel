@@ -6,9 +6,9 @@ import StockTable from '../../Organisms/Table/StockTable'
 import BuildParsedData from '../../../shared/function/BuildParsedData'
 import ModalOpenButton from '../../Atoms/Button/ModalOpenButton'
 
-const Stock = () => {
+const Stocks = () => {
     var stockList = []
-    stockList = BuildParsedData('stock')
+    stockList = BuildParsedData('stocks')
 
     const [stocks, setStocks] = useState([])
     const [barcode, setBarCode] = useState('')
@@ -72,8 +72,8 @@ const Stock = () => {
     )
 }
 
-export default Stock
+export default Stocks
 
-if (document.getElementById('stock')) {
-    ReactDOM.render(<Stock />, document.getElementById('stock'))
+if (document.getElementById('stocks')) {
+    ReactDOM.render(<Stocks />, document.getElementById('stocks'))
 }

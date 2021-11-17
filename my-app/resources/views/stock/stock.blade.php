@@ -2,6 +2,6 @@
 
 @section('content')
     @isset($stocks)
-    <div id="stock" data-stocks='{{ $stocks }}' />
+        <div id="stocks" data-stocks='{{ $stocks }}' />
     @endisset
 @endsection
