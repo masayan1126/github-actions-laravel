@@ -47,18 +47,8 @@ class StockRepositoryImpl implements StockRepository
 
     public function update(Stock $stock): void
     {
-        $targetStock = $this->findById($stock->getId());
-        $targetStock
-            // ->setId($stock->getId())
-            // ->setUserId($stock->getUserId())
-            ->setName($stock->getName())
-            ->setImageUrl($stock->getImageUrl())
-            ->setUrl($stock->getUrl())
-            ->setNumber($stock->getNumber())
-            ->setExpiryDate($stock->getExpiryDate());
-
-        $modelStock = new ModelStock();
-        $modelStock = $modelStock->toModel($targetStock);
+        $modelStock = ModelStock::query()->find($stock->getId());
+        $modelStock = $modelStock->toModel($stock);
         $modelStock->save();
     }
 

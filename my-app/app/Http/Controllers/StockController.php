@@ -39,7 +39,7 @@ class StockController extends Controller
         //     'stocks' => $stocks,
         // ]);
 
-        return view('stock', compact('stocks'));
+        return view('stock.stock', compact('stocks'));
     }
 
     /**
@@ -99,14 +99,12 @@ class StockController extends Controller
      * @param  \App\Models\stock  $stock
      * @return \Illuminate\Http\Response
      */
-    public function edit(Request $request, StockFindService $stockFindService)
+    public function edit(int $id, StockFindService $stockFindService)
     {
         // stockIdを受け取り、編集画面とともに返す
-
-        $stock = StockTransformer::transform(
-            $stockFindService->exec($request->id)
+        $stock = json_encode(
+            StockTransformer::transform($stockFindService->exec($id))
         );
-
         return view('stock.edit', compact('stock'));
     }
 
@@ -118,19 +116,21 @@ class StockController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(
+        int $id,
         Request $request,
         StockUpdateService $stockUpdateService,
         Stock $stock
     ) {
-        $data = json_decode($request->data);
         $stock
-            ->setId($data[0]->id)
-            ->setUserId($data[0]->userId)
-            ->setName($data[0]->name)
-            ->setImageUrl($data[0]->imageUrl)
-            ->setUrl($data[0]->url)
-            ->setNumber($data[0]->number);
+            ->setId($id)
+            ->setUserId(Auth::id())
+            ->setName($request->productName)
+            ->setImageUrl($request->productImageUrl)
+            ->setUrl($request->productUrl)
+            ->setExpiryDate($request->expiryDate)
+            ->setNumber($request->number);
 
+        // dd($stock);
         $stockUpdateService->exec($stock);
 
         return redirect('/stocks');

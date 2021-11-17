@@ -2,6 +2,7 @@ import React, { useCallback, useState, useEffect } from 'react'
 import THeaderRow from '../../Molecules/Theader/TheaderRow'
 import Image from '../../Atoms/Image/Image'
 import BasicForm from '../../Molecules/Form/BasicForm'
+import BasicEditForm from '../../Molecules/Form/BasicEditForm'
 
 const StockTable = (props) => {
     return (
@@ -23,7 +24,7 @@ const StockTable = (props) => {
                         <td>{data.number}</td>
                         <td>{data.expiryDate}</td>
                         <td>
-                            <BasicForm
+                            <BasicEditForm
                                 action={'/stocks/edit/' + data.id}
                                 method={'GET'}
                                 buttonName={'編集'}

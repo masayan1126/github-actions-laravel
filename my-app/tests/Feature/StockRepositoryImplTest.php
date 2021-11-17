@@ -122,35 +122,35 @@ class StockRepositoryImplTest extends TestCase
      *
      * @test
      */
-    // public function 更新できる()
-    // {
-    //     // 更新対象のstock
-    //     $stockFindService = new StockFindService($this->stockRepository);
-    //     $targetStock = $stockFindService->exec($stockId = 1);
+    public function 更新できる()
+    {
+        // 更新対象のstock
+        $stockFindService = new StockFindService($this->stockRepository);
+        $targetStock = $stockFindService->exec($stockId = 1);
 
-    //     $targetStock
-    //         // ->setId(1)
-    //         // ->setUserId(1)
-    //         ->setName('チョコロールケーキ')
-    //         ->setImageUrl(
-    //             'http://thumbnail.image.rakuten.co.jp/@0_mall/jetprice/cabinet/107/800364.jpg?_ex=128x128'
-    //         )
-    //         ->setUrl('https://item.rakuten.co.jp/jetprice/x21203/')
-    //         ->setNumber(7)
-    //         ->setExpiryDate('2021-09-11');
+        $targetStock
+            // ->setId(1)
+            // ->setUserId(1)
+            ->setName('チョコロールケーキ')
+            ->setImageUrl(
+                'http://thumbnail.image.rakuten.co.jp/@0_mall/jetprice/cabinet/107/800364.jpg?_ex=128x128'
+            )
+            ->setUrl('https://item.rakuten.co.jp/jetprice/x21203/')
+            ->setNumber(7)
+            ->setExpiryDate('2021-09-11');
 
-    //     $stockUpdateService = new StockUpdateService($this->stockRepository);
-    //     $stockUpdateService->exec($targetStock);
+        $stockUpdateService = new StockUpdateService($this->stockRepository);
+        $stockUpdateService->exec($targetStock);
 
-    //     $this->assertDatabaseHas('stocks', [
-    //         'id' => 1,
-    //         'user_id' => 1,
-    //         'name' => 'チョコロールケーキ',
-    //         'image_url' =>
-    //             'http://thumbnail.image.rakuten.co.jp/@0_mall/jetprice/cabinet/107/800364.jpg?_ex=128x128',
-    //         'url' => 'https://item.rakuten.co.jp/jetprice/x21203/',
-    //         'number' => 7,
-    //         'expiry_date' => '2021-09-11',
-    //     ]);
-    // }
+        $this->assertDatabaseHas('stocks', [
+            'id' => 1,
+            'user_id' => 1,
+            'name' => 'チョコロールケーキ',
+            'image_url' =>
+                'http://thumbnail.image.rakuten.co.jp/@0_mall/jetprice/cabinet/107/800364.jpg?_ex=128x128',
+            'url' => 'https://item.rakuten.co.jp/jetprice/x21203/',
+            'number' => 7,
+            'expiry_date' => '2021-09-11',
+        ]);
+    }
 }

@@ -14,3 +14,4 @@ require('./bootstrap')
 
 require('./components/App')
 require('./components/atomic/Pages/Stock/Stock.jsx')
+require('./components/atomic/Pages/Stock/EditStock.jsx')
