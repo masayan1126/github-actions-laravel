@@ -1,23 +1,23 @@
+import CsrfToken from '../../../shared/variable/CsrfToken'
+import Image from '../../Atoms/Image/Image'
 import React, { useCallback, useState, useEffect } from 'react'
 import TextInput from '../../Atoms/TextInput/TextInput'
-import Button from '../../Atoms/Button/Button'
-import Image from '../../Atoms/Image/Image'
-import BasicUpdateForm from '../../Molecules/Form/BasicUpdateForm'
 
 const StockEditForm = (props) => {
-    let csrf_token = document.head.querySelector(
-        'meta[name="csrf-token"]'
-    ).content
     return (
         <form action={'/stocks/update/' + props.productId} method="POST">
-            <input type="hidden" name="_token" value={csrf_token} />
+            <CsrfToken />
             <Image src={props.productImageUrl} alt={props.name} />
-            <input
+            <TextInput
                 type="hidden"
                 name={'productImageUrl'}
                 value={props.productImageUrl}
             />
-            <input type="hidden" name={'productUrl'} value={props.productUrl} />
+            <TextInput
+                type="hidden"
+                name={'productUrl'}
+                value={props.productUrl}
+            />
             <div class="form-group">
                 <label for="inputStockName">商品名</label>
                 <TextInput
