@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.barcodeReaderContainer > video, canvas {
+    width: 100%;
+}
+
+#interactive.viewport canvas.drawingBuffer, video.drawingBuffer {
+    margin-left: -640px;
+}
