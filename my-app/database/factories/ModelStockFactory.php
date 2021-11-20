@@ -22,14 +22,13 @@ class ModelStockFactory extends Factory
     public function definition()
     {
         return [
-            'id' => 1,
-            'user_id' => 1,
-            'name' => 'ガム',
+            'user_id' => $this->faker->numberBetween(1, 6),
+            'name' => $this->faker->name(),
             'image_url' =>
                 'http://thumbnail.image.rakuten.co.jp/@0_mall/jetprice/cabinet/107/800364.jpg?_ex=128x128',
-            'url' => 'https://item.rakuten.co.jp/jetprice/x21203/',
+            'url' => $this->faker->url(),
             'number' => $this->faker->randomNumber(5),
-            'expiry_date' => $this->faker->date(),
+            'expiry_date' => $this->faker->dateTime(),
             'created_at' => now(),
             'updated_at' => now(),
         ];

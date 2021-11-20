@@ -6,6 +6,7 @@ use App\Models\ModelUser;
 use Zaico\Domain\Auth\SocialLoginDriver;
 use Laravel\Socialite\Facades\Socialite;
 use Exception;
+use Illuminate\Support\Facades\Auth;
 
 class SocialLoginService
 {
@@ -20,6 +21,7 @@ class SocialLoginService
     public function handleSocialCallback(SocialLoginDriver $socialLoginDriver)
     {
         try {
+            // 認証済みのgoogleアカウントユーザーが来る
             $googleUser = Socialite::driver($socialLoginDriver->driverType())
                 ->with(['access_type' => 'offline'])
                 ->user();
