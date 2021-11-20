@@ -2,8 +2,10 @@
 
 namespace Database\Seeders;
 
-use App\Models\ModelUser;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 class DatabaseSeeder extends Seeder
 {
@@ -14,6 +16,14 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        ModelUser::factory(10)->create();
+        $this->call([UserSeeder::class]);
+
+        DB::table('users')->insert([
+            'name' => Str::random(10),
+            'email' => 'masa199311266@gmail.com',
+            'password' => Hash::make('password'),
+        ]);
+
+        $this->call([StockSeeder::class]);
     }
 }
