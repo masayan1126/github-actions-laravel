@@ -1,16 +1,29 @@
 import React, { useCallback, useState, useEffect } from 'react'
 import ReactDOM from 'react-dom'
+import BuildParsedData from '../../../shared/function/BuildParsedData'
+import CsrfToken from '../../../shared/variable/CsrfToken'
+import GoogleLoginButton from '../../Atoms/Button/GoogleLoginButton'
+import BasicParagraph from '../../Atoms/Paragraph/BasicParagraph'
 
 const Login = () => {
+    const element = document.getElementById('login')
+    const [error, setError] = useState('')
+
+    useEffect(() => {
+        if (element !== null && element.dataset.error !== '') {
+            setError(element.dataset.error)
+        }
+    }, [])
+
     return (
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-8">
                     <div class="card">
                         <div class="card-header">Login</div>
-
                         <div class="card-body">
-                            <form method="POST" action="{{ route('login') }}">
+                            <form method="POST" action="">
+                                <CsrfToken />
                                 <div class="form-group row">
                                     <label
                                         for="email"
@@ -23,9 +36,9 @@ const Login = () => {
                                         <input
                                             id="email"
                                             type="email"
-                                            class="form-control is-invalid @enderror"
+                                            class="form-control is-invalid"
                                             name="email"
-                                            value="{{ old('email') }}"
+                                            value=""
                                             required
                                             autocomplete="email"
                                             autofocus
@@ -48,7 +61,7 @@ const Login = () => {
                                         <input
                                             id="password"
                                             type="password"
-                                            class="form-control @error('password') is-invalid @enderror"
+                                            class="form-control is-invalid"
                                             name="password"
                                             required
                                             autocomplete="current-password"
@@ -57,7 +70,7 @@ const Login = () => {
                                             class="invalid-feedback"
                                             role="alert"
                                         >
-                                            <strong>{{ $message }}</strong>
+                                            <strong></strong>
                                         </span>
                                     </div>
                                 </div>
@@ -93,6 +106,11 @@ const Login = () => {
                                     </div>
                                 </div>
                             </form>
+                            <GoogleLoginButton />
+                            <BasicParagraph
+                                className={'text-red-500 text-center'}
+                                text={error}
+                            />
                         </div>
                     </div>
                 </div>
