@@ -1,35 +1,30 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace Zaico\Application\Auth;
 
-use Illuminate\Http\Request;
-
-use Laravel\Socialite\Facades\Socialite;
 use App\Models\ModelUser;
-use Illuminate\Support\Facades\Auth;
+use Zaico\Domain\Auth\SocialLoginDriver;
+use Laravel\Socialite\Facades\Socialite;
 use Exception;
 
-class LoginWithGoogleController extends Controller
+class SocialLoginService
 {
-    public function redirectToGoogle()
+    public function redirectToSocial(SocialLoginDriver $socialLoginDriver)
     {
-        return Socialite::driver('google')->redirect();
+        return Socialite::driver($socialLoginDriver->driverType())
+            // FIXME:ここでドライバーをパラメーターとして動的にわたす必要があるがうまくいかない
+            // ->with(['state' => $socialLoginDriver->driverType()])
+            ->redirect();
     }
 
-    public function handleGoogleCallback()
+    public function handleSocialCallback(SocialLoginDriver $socialLoginDriver)
     {
         try {
-            $googleUser = Socialite::driver('google')
+            $googleUser = Socialite::driver($socialLoginDriver->driverType())
                 ->with(['access_type' => 'offline'])
                 ->user();
-            $userByGoogleId = ModelUser::where(
-                'google_id',
-                $googleUser->id
-            )->first();
-            $userByGmail = ModelUser::where(
-                'email',
-                $googleUser->email
-            )->first();
+            $userByGoogleId = ModelUser::where('google_id', $googleUser->id)->first();
+            $userByGmail = ModelUser::where('email', $googleUser->email)->first();
 
             // google_idが一致すれば即ログイン
             if ($userByGoogleId !== null) {
@@ -55,10 +50,7 @@ class LoginWithGoogleController extends Controller
             // ]);
             // dd('error');
 
-            return redirect('/login')->with(
-                'error',
-                '該当するアカウントが見つかりませんでした'
-            );
+            return redirect('/login')->with('error', '該当するアカウントが見つかりませんでした');
         } catch (Exception $e) {
             \Log::error($e);
             return redirect()

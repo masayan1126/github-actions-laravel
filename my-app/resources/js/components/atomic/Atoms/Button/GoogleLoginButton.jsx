@@ -4,7 +4,7 @@ const GoogleLoginButton = (props) => {
     return (
         <div class="mt-3">
             {' '}
-            <a href="auth/google">
+            <a href="auth/google?type=google">
                 {' '}
                   
                 <img

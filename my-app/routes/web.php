@@ -3,7 +3,7 @@
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\StockController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\LoginWithGoogleController;
+use App\Http\Controllers\Auth\LoginBySocialController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,13 +22,10 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('auth/google', [
-    LoginWithGoogleController::class,
-    'redirectToGoogle',
-]);
+Route::get('auth/google', [LoginBySocialController::class, 'redirectToSocial']);
 Route::get('auth/google/callback', [
-    LoginWithGoogleController::class,
-    'handleGoogleCallback',
+    LoginBySocialController::class,
+    'handleSocialCallback',
 ]);
 
 Route::middleware('auth')
