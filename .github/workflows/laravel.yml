@@ -52,10 +52,12 @@ jobs:
              php composer-setup.php
              php -r "unlink('composer-setup.php');"
              mv composer.phar /usr/local/bin/composer
-           
+             
+      - name: Create laravel project
+        run: composer create-project  --prefer-dist laravel/laravel my-app
+
       - name: SetUp laravel project
         run: |
-             composer create-project  --prefer-dist laravel/laravel my-app
              composer install
              cp ../.env.example .env
              php artisan key:generate
