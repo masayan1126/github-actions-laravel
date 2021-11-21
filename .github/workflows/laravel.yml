@@ -52,7 +52,7 @@ jobs:
              php composer-setup.php
              php -r "unlink('composer-setup.php');"
              mv composer.phar /usr/local/bin/composer
-             
+
       - name: Create laravel project
         run: composer create-project  --prefer-dist laravel/laravel my-app
 
@@ -83,5 +83,5 @@ jobs:
           FTP_SERVER: ${{ secrets.FTP_HOST_NAME }}
           FTP_USERNAME: ${{ secrets.FTP_USER_NAME }}
           FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
-          LOCAL_DIR: ./my-app
+          LOCAL_DIR: ./
           REMOTE_DIR: /smartphonecaseshop.net
