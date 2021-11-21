@@ -55,6 +55,7 @@ jobs:
            
       - name: SetUp laravel project
         run: |
+             composer create-project  --prefer-dist laravel/laravel my-app
              composer install
              cp ../.env.example .env
              php artisan key:generate
