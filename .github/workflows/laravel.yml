@@ -71,7 +71,7 @@ jobs:
         working-directory: ./my-app
     
   FTP-Deploy-Action:
-    # buildのjobが完了してから開始する
+    # buildのjobが完了してから開始
     needs: laravel-build
     name: FTP-Deploy-Action
     runs-on: ubuntu-latest
